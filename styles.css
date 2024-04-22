@@ -146,8 +146,7 @@ img {
 }
 
 .thumbnail {
-    width: 50%;
-    height: 175px;
+    width: 300%;   
     border-radius: 15px;
     align: center;
 }
