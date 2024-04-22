@@ -1,30 +1,60 @@
-body {
-    font-family: Arial, sans-serif;
-    background: Beige
+body, html {
+  height: 100%;
+  font-family: "Inconsolata", "Arial", sans-serif;
 }
+
+.bgimg {
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://lh3.googleusercontent.com/d/1VwfM71ruMmg1vgBlXYUSoCTc8NzXdzyl");
+  min-height: 75%;
+}
+
+.menu {
+  display: none;
+}
+
+body {
+    background: Beige;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
     border: 1px solid #ddd;
 }
+
 th, td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
     color: Black;
     font-size: 1.5vw; /* Adjust as needed */
-    min-font-size: 10px;
-    max-font-size: 40px;
 }
+
+@media (max-width: 600px) {
+  th, td {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 1200px) {
+  th, td {
+    font-size: 40px;
+  }
+}
+
 .arrow {
     user-select: none;
     cursor: pointer;
 }
+
 .header {
     position: sticky;
     top: 0;
     background-color: Tan;
 }
+
 .selected {
     background-color: lightgreen;
 }
@@ -56,6 +86,7 @@ input[type=text], input[type=datetime-local] {
     transition: 0.5s;
     outline: none;
 }
+
 input[type=text]:focus, input[type=datetime-local]:focus {
     border: 5px solid #555;
 }
@@ -64,6 +95,7 @@ label {
     display: block;
     margin-top: 20px;
 }
+
 button {
     font-weight: bold; /* Bold text */
     background-color: #add8e6; /* Pale blue background */
@@ -87,6 +119,7 @@ button:active {
     outline: none; /* No outline on click */
     box-shadow: 0 0 0 2px #000; /* Outline effect using box-shadow */
 }
+
 table tr td:first-child input[type="checkbox"] {
     display: none;
 }
@@ -96,12 +129,14 @@ img {
     height: 100px; /* or any desired height */
     object-fit: cover; /* this makes the image cover the entire space of the defined width and height */
 }
+
 /* Add styles for the gallery view */
 #csvGallery {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
+
 .csvGallery {
     display: flex;
     flex-wrap: wrap;
@@ -114,9 +149,11 @@ img {
     width: calc(33% - 20px);
     border-radius: 15px; 
 }
+
 .card.selected {
     background-color: lightgreen;
 }
+
 .card > div {
     padding: 10px;
     display: flex;
@@ -130,9 +167,9 @@ img {
     text-align: center; /* Center the text */
 }
 
-.thumbnail {
-    width: 100%;
-    height: 175px;
+thumbnail {
+    max-width:400px;   
     border-radius: 15px;
-    align: center;
+    display: block;
+    margin: auto;
 }
