@@ -145,8 +145,8 @@ img {
     text-align: center; /* Center the text */
 }
 
-.thumbnail {
-    width: 300px;   
+img.thumbnail {
+    width: 10px;   
     border-radius: 15px;
     align: center;
 }
