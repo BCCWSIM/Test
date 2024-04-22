@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CW Simulation Resources</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>CW Simulation Resources</h1>
+     <label for="titleInput"><br><br>Title</label>
+     <input type="text" id="titleInput" placeholder="Title">
+    <label for="contactPersonInput">Contact Person</label>
+     <input type="text" id="contactPersonInput" placeholder="Contact Person">
+    <label for="startDateTimeInput">Start Date & Time</label>
+     <input type="datetime-local" id="startDateTimeInput">
+    <label for="endDateTimeInput">End Date & Time</label>
+     <input type="datetime-local" id="endDateTimeInput">
+     <br>
+    <button id="clearSelectionButton">Clear Selection (0)</button>
+    <button id="exportButton">Export CSV</button>
+    <button id="toggleViewButton">Toggle View</button>
+    <table id="csvTable">
+        <!-- The CSV data will be displayed here -->
+    </table>
+    <div id="csvGallery" style="display: none;">
+        <!-- The CSV data will be displayed here in gallery view -->
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
