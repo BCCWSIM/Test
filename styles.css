@@ -1,18 +1,3 @@
-body, html {
-  height: 50%;
-  font-family: "Inconsolata", sans-serif;
-}
-
-.bgimg {
-  background-position: center;
-  background-size: cover;
-  background-image: url("https://lh3.googleusercontent.com/d/1VwfM71ruMmg1vgBlXYUSoCTc8NzXdzyl");
-  min-height: 75%;
-}
-
-.menu {
-  display: none;
-}
 body {
     font-family: Arial, sans-serif;
     background: Beige
@@ -145,10 +130,9 @@ img {
     text-align: center; /* Center the text */
 }
 
-img.thumbnail {
-    max-width:400px;   
+.thumbnail {
+    width: 100%;
+    height: 175px;
     border-radius: 15px;
-    display: block;
-    margin: auto;
+    align: center;
 }
-
