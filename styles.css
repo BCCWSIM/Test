@@ -173,3 +173,7 @@ img {
     border-radius: 15px;
     align: center;
 }
+img {
+    filter: brightness(100%);
+}
+
