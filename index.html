@@ -1,21 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CW Simulation Resources</title>
-    <link rel="stylesheet" href="styles.css">
+<title>CW</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
 </head>
 <body>
+
+<!-- Links (sit on top) -->
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+    <div class="w3-col s3">
+      <a href="#" class="w3-button w3-block w3-black">VIEW</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#about" class="w3-button w3-block w3-black">SELECTION</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#menu" class="w3-button w3-block w3-black">CLEAR</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#where" class="w3-button w3-block w3-black">E-MAIL</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
+    <span class="w3-tag">Open from 8am to 4pm</span>
+  </div>
+  <div class="w3-display-middle w3-center">
+    <span class="w3-text-white" style="font-size:90px">Simulation<br>Program</span>
+  </div>
+  <div class="w3-display-bottomright w3-center w3-padding-large">
+    <span class="w3-text-white">4500 Oak Street, Vancouver</span>
+  </div>
+</header>
+
+<!-- Add a background color and large text to the whole page -->
+<div class="w3-sand w3-grayscale w3-large">
+
+<!-- Menu Container -->
+<div class="w3-container" id="menu">
+  <div class="w3-content" style="max-width:700px">
+ 
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">Resources</span></h5>
+  
+    <div class="w3-row w3-center w3-card w3-padding">
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Eat');" id="myLink">
+        <div class="w3-col s6 tablink">Resources</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Drinks');">
+        <div class="w3-col s6 tablink">Consumables</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Drinks');">
+        <div class="w3-col s6 tablink">Mock Medicine</div>
+      </a>
+    </div>
+
+    <div id="Eat" class="w3-container menu w3-padding-48 w3-card">
+      
     <h1>CW Simulation Resources</h1>
-     <label for="titleInput"><br><br>Title</label>
-     <input type="text" id="titleInput" placeholder="Title">
-    <label for="contactPersonInput">Contact Person</label>
-     <input type="text" id="contactPersonInput" placeholder="Contact Person">
-    <label for="startDateTimeInput">Start Date & Time</label>
-     <input type="datetime-local" id="startDateTimeInput">
-    <label for="endDateTimeInput">End Date & Time</label>
-     <input type="datetime-local" id="endDateTimeInput">
      <br>
     <button id="clearSelectionButton">Clear Selection (0)</button>
     <button id="exportButton">Export CSV</button>
@@ -27,6 +75,32 @@
         <!-- The CSV data will be displayed here in gallery view -->
     </div>
     <script src="script.js"></script>
+    </div>
+
+    <div id="Drinks" class="w3-container menu w3-padding-48 w3-card">
+      <h5>Coffee</h5>
+      <p class="w3-text-grey">Regular coffee 2.50</p><br>
+    
+      <h5>Chocolato</h5>
+      <p class="w3-text-grey">Chocolate espresso with milk 4.50</p><br>
+    
+      <h5>Corretto</h5>
+      <p class="w3-text-grey">Whiskey and coffee 5.00</p><br>
+    
+      <h5>Iced tea</h5>
+      <p class="w3-text-grey">Hot tea, except not hot 3.00</p><br>
+    
+      <h5>Soda</h5>
+      <p class="w3-text-grey">Coke, Sprite, Fanta, etc. 2.50</p>
+    </div>  
+    <img src="https://lh3.googleusercontent.com/d/1VS3MFi4Vhg2PPvM6TD7zUi24WpfGKniw" style="width:100%;max-width:1000px;margin-top:32px;">
+  </div>
+</div>
+
+<!-- End page content -->
+</div>
+
+
+
 </body>
 </html>
-
