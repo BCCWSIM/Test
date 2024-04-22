@@ -39,6 +39,8 @@ function displayTable(data) {
     data[0].forEach((cell, index) => {
         const th = document.createElement('th');
         th.classList.add('header');
+        th.style.textAlign = 'right'; // Align content to the right
+        th.addEventListener('click', () => sortData(index)); // Attach event listener to the header cell
         const span = document.createElement('span');
         span.textContent = cell;
         th.appendChild(span);
