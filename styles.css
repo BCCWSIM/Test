@@ -29,7 +29,7 @@ th, td {
     padding: 8px;
     text-align: center;
     color: Black;
-    font-size: 1vw; /* Adjust as needed */
+    font-size: 1.5vw; /* Adjust as needed */
 }
 
 @media (max-width: 600px) {
