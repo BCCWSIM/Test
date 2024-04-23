@@ -226,6 +226,11 @@ clearSelectionButton.addEventListener('click', clearSelection);
 
 span.style.pointerEvents = 'none';
 
+document.querySelector('.w3-col.s3:nth-child(2) a').addEventListener('click', function() {
+  this.classList.toggle('active');
+});
+
+
 let isTableView = true;
 
 document.getElementById('toggleViewButton').addEventListener('click', toggleView);
