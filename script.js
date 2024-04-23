@@ -43,10 +43,12 @@ function displayTable(data) {
         th.addEventListener('click', () => sortData(index)); // Attach event listener to the entire header cell
         const span = document.createElement('span');
         span.textContent = cell;
+        span.style.pointerEvents = 'none'; // Add this line
         th.appendChild(span);
         const arrow = document.createElement('span');
         arrow.textContent = ' ↑↓';
         arrow.classList.add('arrow');
+        arrow.style.pointerEvents = 'none'; // And this line
         th.appendChild(arrow);
         headerRow.appendChild(th);
     });
