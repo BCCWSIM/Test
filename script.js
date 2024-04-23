@@ -40,14 +40,13 @@ function displayTable(data) {
         const th = document.createElement('th');
         th.classList.add('header');
         th.style.textAlign = 'right'; // Align content to the right
-        th.addEventListener('click', () => sortData(index)); // Attach event listener to the header cell
+        th.addEventListener('click', () => sortData(index)); // Attach event listener to the entire header cell
         const span = document.createElement('span');
         span.textContent = cell;
         th.appendChild(span);
         const arrow = document.createElement('span');
         arrow.textContent = ' ↑↓';
         arrow.classList.add('arrow');
-        arrow.addEventListener('click', () => sortData(index));
         th.appendChild(arrow);
         headerRow.appendChild(th);
     });
