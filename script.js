@@ -224,6 +224,8 @@ exportButton.addEventListener('click', exportCSV);
 const clearSelectionButton = document.getElementById('clearSelectionButton');
 clearSelectionButton.addEventListener('click', clearSelection);
 
+span.style.pointerEvents = 'none';
+
 let isTableView = true;
 
 document.getElementById('toggleViewButton').addEventListener('click', toggleView);
