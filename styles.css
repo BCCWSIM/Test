@@ -38,7 +38,7 @@ th, td {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 100%) {
   th, td {
     font-size: 40px;
   }
