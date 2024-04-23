@@ -43,12 +43,10 @@ function displayTable(data) {
         th.addEventListener('click', () => sortData(index)); // Attach event listener to the entire header cell
         const span = document.createElement('span');
         span.textContent = cell;
-        span.style.pointerEvents = 'none'; // Add this line
         th.appendChild(span);
         const arrow = document.createElement('span');
         arrow.textContent = ' ↑↓';
         arrow.classList.add('arrow');
-        arrow.style.pointerEvents = 'none'; // And this line
         th.appendChild(arrow);
         headerRow.appendChild(th);
     });
@@ -224,13 +222,6 @@ exportButton.addEventListener('click', exportCSV);
 const clearSelectionButton = document.getElementById('clearSelectionButton');
 clearSelectionButton.addEventListener('click', clearSelection);
 
-span.style.pointerEvents = 'none';
-
-document.querySelector('.w3-col.s3:nth-child(2) a').addEventListener('click', function() {
-  this.classList.toggle('active');
-});
-
-
 let isTableView = true;
 
 document.getElementById('toggleViewButton').addEventListener('click', toggleView);
@@ -306,5 +297,4 @@ function displayGallery(data) {
         gallery.appendChild(div);
     }
 }
-
 
