@@ -14,12 +14,12 @@ body, html {
     background-color: rgba(255, 255, 255, 0.5); /* white background with 50% opacity */
     padding: 10px; /* Add some padding if you want space between the logo and the background */
     border-radius: 15px;
-    width: 100%; /* Corrected here */
+    width: 200px; 
     height: auto;
 }
 
 .logo1 img {
-    width: 100px;
+    width: 100%;
     height: auto;
 }
 
