@@ -17,6 +17,11 @@ body, html {
     width: 140px; 
     height: auto;
     display: inline-block;
+    margin-right: 20px; /* Add a margin to the right of the logo */
+}
+
+.logo1:last-child {
+    margin-right: 0; /* Remove the margin from the last logo to prevent extra space on the right */
 }
 
 .logo1 img {
