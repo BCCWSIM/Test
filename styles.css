@@ -22,9 +22,9 @@ body, html {
 }
 .w3-display-middle {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    flex-wrap: nowrap;
+    flex-direction: column;
 }
 .logo1 {
     flex: 1;
