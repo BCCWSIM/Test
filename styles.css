@@ -67,7 +67,7 @@ body {
     background: #EDEDED;
 }
 #csvTable {
-    display: none;
+    display: table;
 }
 
 #csvGallery {
