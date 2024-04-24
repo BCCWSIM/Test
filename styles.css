@@ -139,12 +139,6 @@ table tr td:first-child input[type="checkbox"] {
     display: none;
 }
 
-img {
-    width: 200px; /* or any desired width */
-    height: 100px; /* or any desired height */
-    object-fit: cover; /* this makes the image cover the entire space of the defined width and height */
-}
-
 /* Add styles for the gallery view */
 #csvGallery {
     display: flex;
