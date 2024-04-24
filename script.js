@@ -143,14 +143,14 @@ function updateGalleryView() {
 
 function updateClearSelectionButton() {
     const clearSelectionButton = document.getElementById('clearSelectionButton');
-    clearSelectionButton.textContent = `CLEAR 
-    SELECTION (${selectedItems.size})`;
+    clearSelectionButton.innerHTML = `CLEAR<br>SELECTION (${selectedItems.size})`;
     if (selectedItems.size > 0) {
         clearSelectionButton.classList.add('amber');
     } else {
         clearSelectionButton.classList.remove('amber');
     }
 }
+
 
 function displayTable(data) {
     const table = document.getElementById('csvTable');
