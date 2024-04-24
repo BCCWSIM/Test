@@ -73,6 +73,7 @@ th, td {
     top: 0;
     background-color: #0f426a;
     z-index: 1000;
+    color: #ffffff; /* This will make the text color white */
 }
 
 .selected {
