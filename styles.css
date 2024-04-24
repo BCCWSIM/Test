@@ -20,8 +20,6 @@ body, html {
     flex: 1;
     max-width: calc(50% - 40px); /* Adjust as needed */
     margin-right: 0;
-}
-.logo1 {
     background-color: rgba(255, 255, 255, 0.60); /* white background with 50% opacity */
     padding: 1px; /* Add some padding if you want space between the logo and the background */
     border-radius: 15px;
