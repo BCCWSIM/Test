@@ -28,12 +28,12 @@ body, html {
 }
 .logo1 {
     flex: 1;
-    max-width: calc(50% - 40px); /* Adjust as needed */
+    max-width: 160px; /* Set maximum width to 160px */
+    width: 100%; /* This will make the logo responsive */
     margin-right: 0;
     background-color: rgba(255, 255, 255, 0.60); /* white background with 50% opacity */
     padding: 1px; /* Add some padding if you want space between the logo and the background */
     border-radius: 15px;
-    width: 140px; 
     height: auto;
     display: inline-block;
     margin-right: 40px; /* Add a margin to the right of the logo */
