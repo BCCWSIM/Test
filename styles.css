@@ -9,13 +9,23 @@ body, html {
   background-image: url("https://lh3.googleusercontent.com/d/1VwfM71ruMmg1vgBlXYUSoCTc8NzXdzyl");
   min-height: 70%;
 }
-.w3-display-middle {
+.logo-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
 }
 
+.text-container {
+    text-align: center;
+    width: 100%;
+}
+.w3-display-middle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
 .logo1 {
     flex: 1;
     max-width: calc(50% - 40px); /* Adjust as needed */
