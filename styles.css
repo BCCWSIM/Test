@@ -71,7 +71,7 @@ th, td {
 .header {
     position: sticky;
     top: 0;
-    background-color: Tan;
+    background-color: #0f426a;
     z-index: 1000;
 }
 
