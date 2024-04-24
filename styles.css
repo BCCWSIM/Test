@@ -17,7 +17,7 @@ body, html {
     width: 145px; 
     height: auto;
     display: inline-block;
-    margin-right: 60px; /* Add a margin to the right of the logo */
+    margin-right: 55px; /* Add a margin to the right of the logo */
 }
 
 .logo1:last-child {
