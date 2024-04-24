@@ -14,7 +14,7 @@ body, html {
     background-color: rgba(255, 255, 255, 0.65); /* white background with 50% opacity */
     padding: 1px; /* Add some padding if you want space between the logo and the background */
     border-radius: 15px;
-    width: 145px; 
+    width: 140px; 
     height: auto;
     display: inline-block;
     margin-right: 55px; /* Add a margin to the right of the logo */
