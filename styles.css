@@ -14,10 +14,10 @@ body, html {
     background-color: rgba(255, 255, 255, 0.65); /* white background with 50% opacity */
     padding: 1px; /* Add some padding if you want space between the logo and the background */
     border-radius: 15px;
-    width: 140px; 
+    width: 150px; 
     height: auto;
     display: inline-block;
-    margin-right: 50px; /* Add a margin to the right of the logo */
+    margin-right: 60px; /* Add a margin to the right of the logo */
 }
 
 .logo1:last-child {
