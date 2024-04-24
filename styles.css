@@ -13,9 +13,20 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: nowrap;
+    padding: 0 15px; /* Add padding to the container */
 }
 
+.logo1 {
+    flex: 1;
+    max-width: 450px; /* Set maximum width to 450px */
+    width: 100%; /* This will make the logo responsive */
+}
+
+@media (min-width: 900px) {
+    .logo1 {
+        max-width: 900px; /* Set maximum width to 900px on screens wider than 900px */
+    }
+}
 .text-container {
     text-align: center;
     width: 100%;
