@@ -67,6 +67,7 @@ th, td {
     position: sticky;
     top: 0;
     background-color: Tan;
+    z-index: 1000;
 }
 
 .selected {
@@ -186,6 +187,7 @@ img {
     height: 175px;
     border-radius: 15px;
     align: center;
+    z-index: 999;
 }
 img {
     filter: brightness(100%);
