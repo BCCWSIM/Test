@@ -7,12 +7,12 @@ body, html {
   background-position: center;
   background-size: cover;
   background-image: url("https://lh3.googleusercontent.com/d/1VwfM71ruMmg1vgBlXYUSoCTc8NzXdzyl");
-  min-height: 75%;
+  min-height: 80%;
 }
 
 .logo1 {
-    background-color: rgba(255, 255, 255, 0.6); /* white background with 50% opacity */
-    padding: 2px; /* Add some padding if you want space between the logo and the background */
+    background-color: rgba(255, 255, 255, 0.7); /* white background with 50% opacity */
+    padding: 1px; /* Add some padding if you want space between the logo and the background */
     border-radius: 15px;
     width: 140px; 
     height: auto;
