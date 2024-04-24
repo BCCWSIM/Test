@@ -225,7 +225,7 @@ exportButton.addEventListener('click', exportCSV);
 const clearSelectionButton = document.getElementById('clearSelectionButton');
 clearSelectionButton.addEventListener('click', clearSelection);
 
-let isTableView = true;
+let isTableView = false;
 
 document.getElementById('toggleViewButton').addEventListener('click', toggleView);
 
@@ -241,6 +241,7 @@ function toggleView() {
         displayGallery(items);
     }
 }
+toggleView();
 
 function displayGallery(data) {
     const gallery = document.getElementById('csvGallery');
