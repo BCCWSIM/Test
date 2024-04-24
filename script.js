@@ -241,7 +241,6 @@ function toggleView() {
         displayGallery(items);
     }
 }
-toggleView();
 
 function displayGallery(data) {
     const gallery = document.getElementById('csvGallery');
@@ -301,4 +300,4 @@ function displayGallery(data) {
         gallery.appendChild(div);
     }
 }
-
+toggleView();
