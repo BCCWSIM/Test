@@ -5,7 +5,7 @@ body, html {
 
 .bgimg {
   background-position: bottom;
-  background-size: cover;
+  background-size: contain;
   background-image: url("https://lh3.googleusercontent.com/d/1VwfM71ruMmg1vgBlXYUSoCTc8NzXdzyl");
   min-height: 70%;
   background-repeat: no-repeat;
