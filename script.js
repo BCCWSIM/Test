@@ -228,6 +228,10 @@ clearSelectionButton.addEventListener('click', clearSelection);
 let isTableView = false;
 document.getElementById('toggleViewButton').addEventListener('click', toggleView);
 
+let isTableView = false; // Set this to false to display the gallery view initially
+
+document.getElementById('toggleViewButton').addEventListener('click', toggleView);
+
 function toggleView() {
     isTableView = !isTableView;
     if (isTableView) {
