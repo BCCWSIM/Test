@@ -9,6 +9,15 @@ let items = [];
 let sortDirection = [];
 let selectedItems = new Set();
 
+const exportButton = document.getElementById('exportButton');
+exportButton.addEventListener('click', exportCSV);
+
+const clearSelectionButton = document.getElementById('clearSelectionButton');
+clearSelectionButton.addEventListener('click', clearSelection);
+
+let isTableView = false;
+document.getElementById('toggleViewButton').addEventListener('click', toggleView);
+
 // Fetch the CSV file (assuming it's named 'Resources.csv')
 fetch('Resources.csv')
     .then(response => response.text())
@@ -224,15 +233,6 @@ function displayTable(data) {
         });
     }
 }
-
-const exportButton = document.getElementById('exportButton');
-exportButton.addEventListener('click', exportCSV);
-
-const clearSelectionButton = document.getElementById('clearSelectionButton');
-clearSelectionButton.addEventListener('click', clearSelection);
-
-let isTableView = false;
-document.getElementById('toggleViewButton').addEventListener('click', toggleView);
 
 function toggleView() {
     isTableView = !isTableView;
