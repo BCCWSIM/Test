@@ -1,7 +1,24 @@
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);
 }
-toggleView();
+window.onload = function() {
+    toggleView();
+}
+
+let items = [];
+let sortDirection = [];
+let selectedItems = new Set();
+
+// Fetch the CSV file (assuming it's named 'Resources.csv')
+fetch('Resources.csv')
+    .then(response => response.text())
+    .then(csvData => {
+        items = csvData.split('\n').map(row => row.split(','));
+        sortDirection = new Array(items[0].length).fill(1);
+        displayTable(items);
+    })
+    .catch(error => console.error('Error fetching CSV:', error));
+
 // Tabbed Menu
 function openMenu(evt, menuName) {
   var i, x, tablinks;
@@ -17,20 +34,6 @@ function openMenu(evt, menuName) {
   evt.currentTarget.firstElementChild.className += " w3-dark-grey";
 }
 document.getElementById("myLink").click();
-
-let items = [];
-let sortDirection = [];
-let selectedItems = new Set();
-
-// Fetch the CSV file (assuming it's named 'Resources.csv')
-fetch('Resources.csv')
-    .then(response => response.text())
-    .then(csvData => {
-        items = csvData.split('\n').map(row => row.split(','));
-        sortDirection = new Array(items[0].length).fill(1);
-        displayTable(items);
-    })
-    .catch(error => console.error('Error fetching CSV:', error));
 
 function displayTable(data) {
     const table = document.getElementById('csvTable');
