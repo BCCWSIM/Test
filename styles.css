@@ -30,6 +30,7 @@ body, html {
 .text-container {
     text-align: center;
     width: 100%;
+    max-width: 1000px;
 }
 .w3-display-middle {
     display: flex;
