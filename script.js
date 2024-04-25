@@ -1,5 +1,6 @@
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);
+  toggleView();
 }
 
 // Tabbed Menu
@@ -247,7 +248,7 @@ function toggleView() {
         displayGallery(items);
     }
 }
-toggleView();
+
 
 function displayGallery(data) {
     const gallery = document.getElementById('csvGallery');
