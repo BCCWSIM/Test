@@ -38,6 +38,12 @@ body, html {
     align-items: center;
     flex-direction: column;
 }
+
+.text-container span {
+    font-size: calc(2vw + 2vh + 2vmin); /* Adjust as needed */
+    color: white;
+}
+
 .logo1 {
     flex: 1;
     max-width: 160px; /* Set maximum width to 160px */
