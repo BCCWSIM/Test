@@ -129,9 +129,12 @@ function exportCSV() {
 
 function clearSelection() {
     selectedItems.clear();
-    displayTable(items);
+    if (isTableView) {
+        displayTable(items);
+    } else {
+        displayGallery(items);
+    }
     updateClearSelectionButton();
-    updateGalleryView(); // Add this line
 }
 
 function updateGalleryView() {
