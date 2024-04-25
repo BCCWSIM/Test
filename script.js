@@ -1,8 +1,7 @@
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);
-  toggleView();
 }
-
+toggleView();
 // Tabbed Menu
 function openMenu(evt, menuName) {
   var i, x, tablinks;
