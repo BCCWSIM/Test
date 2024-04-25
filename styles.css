@@ -5,7 +5,9 @@ body, html {
 
 .bgimg {
   background-position: center;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat; /* Add this to prevent the image from repeating */
+  background-color: #yourColor; /* Replace #yourColor with the color of your choice */
   background-image: url("https://lh3.googleusercontent.com/d/1VwfM71ruMmg1vgBlXYUSoCTc8NzXdzyl");
   min-height: 70%;
 }
