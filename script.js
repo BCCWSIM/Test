@@ -8,15 +8,14 @@ window.onload = function() {
 let items = [];
 let sortDirection = [];
 let selectedItems = new Set();
+let isTableView = true;
+document.getElementById('toggleViewButton').addEventListener('click', toggleView);
 
 const exportButton = document.getElementById('exportButton');
 exportButton.addEventListener('click', exportCSV);
 
 const clearSelectionButton = document.getElementById('clearSelectionButton');
 clearSelectionButton.addEventListener('click', clearSelection);
-
-let isTableView = false;
-document.getElementById('toggleViewButton').addEventListener('click', toggleView);
 
 // Fetch the CSV file (assuming it's named 'Resources.csv')
 fetch('Resources.csv')
