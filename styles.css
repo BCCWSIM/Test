@@ -4,12 +4,11 @@ body, html {
 }
 
 .bgimg {
-  background-position: bottom;
+  background-position: center center;
   background-size: cover;
   background-image: url("https://lh3.googleusercontent.com/d/1VwfM71ruMmg1vgBlXYUSoCTc8NzXdzyl");
   min-height: 70%;
-  background-repeat: no-repeat;
-  background-position: center center;
+  background-repeat: no-repeat;  
 }
 
 .logo-container {
