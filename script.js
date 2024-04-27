@@ -1,23 +1,15 @@
-window.onbeforeunload = function () {
-  window.scrollTo(0, 0);
-}
-window.onload = function() {
-    toggleView();
-}
+window.onbeforeunload = () => window.scrollTo(0, 0);
+window.onload = toggleView;
 
 let items = [];
 let sortDirection = [];
 let selectedItems = new Set();
 let isTableView = true;
+
 document.getElementById('toggleViewButton').addEventListener('click', toggleView);
+document.getElementById('exportButton').addEventListener('click', exportCSV);
+document.getElementById('clearSelectionButton').addEventListener('click', clearSelection);
 
-const exportButton = document.getElementById('exportButton');
-exportButton.addEventListener('click', exportCSV);
-
-const clearSelectionButton = document.getElementById('clearSelectionButton');
-clearSelectionButton.addEventListener('click', clearSelection);
-
-// Fetch the CSV file (assuming it's named 'Resources.csv')
 fetch('Resources.csv')
     .then(response => response.text())
     .then(csvData => {
