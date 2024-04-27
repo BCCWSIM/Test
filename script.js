@@ -34,7 +34,9 @@ function openMenu(evt, menuName) {
   document.getElementById(menuName).style.display = "block";
   evt.currentTarget.firstElementChild.className += " w3-dark-grey";
 }
-document.getElementById("myLink").click();
+
+// Simulate a click on the first tab
+document.getElementsByClassName("tablink")[0].click();
 
 function displayTable(data) {
     const table = document.getElementById('csvTable');
