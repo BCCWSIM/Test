@@ -18,24 +18,36 @@ body, html {
     padding: 0 15px;
 }
 
-.logo1 {
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.logo1, .logo2 {
     flex: 1;
     max-width: 450px;
     width: 100%;
-    margin-right: 0;
     background-color: rgba(255, 255, 255, 0.60);
     padding: 1px;
     border-radius: 15px;
     height: auto;
-    display: inline-block;
-    margin-right: 40px;
+    margin: 10px;
+}
+
+@media (max-width: 600px) {
+    .logo1, .logo2 {
+        max-width: 100%;
+    }
 }
 
 @media (min-width: 900px) {
-    .logo1 {
+    .logo1, .logo2 {
         max-width: 900px;
     }
 }
+
 
 .text-container {
     text-align: center;
