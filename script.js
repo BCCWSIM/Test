@@ -9,6 +9,7 @@ let isTableView = true;
 document.getElementById('toggleViewButton').addEventListener('click', toggleView);
 document.getElementById('exportButton').addEventListener('click', exportCSV);
 document.getElementById('clearSelectionButton').addEventListener('click', clearSelection);
+document.getElementById('reviewButton').addEventListener('click', reviewSelection);
 
 fetch('Resources.csv')
     .then(response => response.text())
@@ -295,5 +296,19 @@ function displayGallery(data) {
         });
         div.appendChild(contentDiv); // Append the content div to the card div
         gallery.appendChild(div);
+    }
+}
+
+function reviewSelection() {
+    const selectedData = [items[0]]; // include headers
+    for (let i = 1; i < items.length; i++) {
+        if (selectedItems.has(items[i].join(','))) {
+            selectedData.push(items[i]);
+        }
+    }
+    if (isTableView) {
+        displayTable(selectedData);
+    } else {
+        displayGallery(selectedData);
     }
 }
