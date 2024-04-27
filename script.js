@@ -29,6 +29,13 @@ categories.forEach(category => {
     categoryDropdown.appendChild(option);
 });
 
+categoryDropdown.addEventListener('change', () => {
+    const selectedCategories = Array.from(categoryDropdown.selectedOptions).map(option => option.value);
+    // Filter the subcategories based on the selected categories...
+    // Filter the items based on the selected categories and subcategories...
+    // Call displayTable or displayGallery...
+});
+
 // Tabbed Menu
 function openMenu(evt, menuName) {
   var i, x, tablinks;
