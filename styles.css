@@ -4,7 +4,7 @@ body, html {
 }
 
 .bgimg {
-  background-position: center center;
+  background-position: center;
   background-size: cover;
   background-image: url("https://lh3.googleusercontent.com/d/1VwfM71ruMmg1vgBlXYUSoCTc8NzXdzyl");
   min-height: 45%;
@@ -15,25 +15,34 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 15px; /* Add padding to the container */
+    padding: 0 15px;
 }
 
 .logo1 {
     flex: 1;
-    max-width: 450px; /* Set maximum width to 450px */
-    width: 100%; /* This will make the logo responsive */
+    max-width: 450px;
+    width: 100%;
+    margin-right: 0;
+    background-color: rgba(255, 255, 255, 0.60);
+    padding: 1px;
+    border-radius: 15px;
+    height: auto;
+    display: inline-block;
+    margin-right: 40px;
 }
 
 @media (min-width: 900px) {
     .logo1 {
-        max-width: 900px; /* Set maximum width to 900px on screens wider than 900px */
+        max-width: 900px;
     }
 }
+
 .text-container {
     text-align: center;
     width: 100%;
     max-width: 1000px;
 }
+
 .w3-display-middle {
     display: flex;
     justify-content: center;
@@ -42,30 +51,8 @@ body, html {
 }
 
 .text-container span {
-    font-size: calc(2vw + 2vh + 2vmin); /* Adjust as needed */
+    font-size: calc(2vw + 2vh + 2vmin);
     color: white;
-}
-
-.logo1 {
-    flex: 1;
-    max-width: 160px; /* Set maximum width to 160px */
-    width: 100%; /* This will make the logo responsive */
-    margin-right: 0;
-    background-color: rgba(255, 255, 255, 0.60); /* white background with 50% opacity */
-    padding: 1px; /* Add some padding if you want space between the logo and the background */
-    border-radius: 15px;
-    height: auto;
-    display: inline-block;
-    margin-right: 40px; /* Add a margin to the right of the logo */
-}
-
-.logo1:last-child {
-    margin-right: 0; /* Remove the margin from the last logo to prevent extra space on the right */
-}
-
-.logo1 img {
-    width: 100%;
-    height: auto;
 }
 
 .menu {
@@ -75,6 +62,7 @@ body, html {
 body {
     background: #EDEDED;
 }
+
 #csvTable {
     display: block;
 }
@@ -82,6 +70,7 @@ body {
 #csvGallery {
     display: block;
 }
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -93,7 +82,7 @@ th, td {
     padding: 8px;
     text-align: center;
     color: Black;
-    font-size: 1.5vw; /* Adjust as needed */
+    font-size: 1.5vw;
 }
 
 @media (max-width: 600px) {
@@ -118,7 +107,7 @@ th, td {
     top: 0;
     background-color: #0f426a;
     z-index: 1000;
-    color: #ffffff; /* This will make the text color white */
+    color: #ffffff;
 }
 
 .selected {
@@ -147,34 +136,33 @@ label {
 }
 
 button {
-    font-weight: bold; /* Bold text */
-    background-color: #add8e6; /* Pale blue background */
+    font-weight: bold;
+    background-color: #add8e6;
     border: none;
     color: black;
-    padding: 15px 32px; /* Larger size */
+    padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    border-radius: 12px; /* Rounded corners */
+    border-radius: 12px;
 }
 
 button:hover {
-    background-color: #87ceeb; /* Highlight on hover */
+    background-color: #87ceeb;
 }
 
 button:active {
-    outline: none; /* No outline on click */
-    box-shadow: 0 0 0 2px #000; /* Outline effect using box-shadow */
+    outline: none;
+    box-shadow: 0 0 0 2px #000;
 }
 
 table tr td:first-child input[type="checkbox"] {
     display: none;
 }
 
-/* Add styles for the gallery view */
 #csvGallery {
     display: flex;
     flex-wrap: wrap;
@@ -204,11 +192,11 @@ table tr td:first-child input[type="checkbox"] {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center; /* Center the text */
+    text-align: center;
 }
 
 .card > div > p {
-    text-align: center; /* Center the text */
+    text-align: center;
 }
 
 .thumbnail {
