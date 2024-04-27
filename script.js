@@ -19,6 +19,15 @@ fetch('Resources.csv')
         displayTable(items);
     })
     .catch(error => console.error('Error fetching CSV:', error));
+// After fetching the CSV data...
+const categories = [...new Set(items.map(item => item[categoryColumnIndex]))];
+const categoryDropdown = document.getElementById('categoryDropdown');
+categories.forEach(category => {
+    const option = document.createElement('option');
+    option.value = category;
+    option.text = category;
+    categoryDropdown.appendChild(option);
+});
 
 // Tabbed Menu
 function openMenu(evt, menuName) {
