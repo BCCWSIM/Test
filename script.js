@@ -116,19 +116,18 @@ function sortData(columnIndex) {
     displayTable(items);
 }
 
-function exportCSV() {
-    const title = document.getElementById('titleInput').value;
-    const contactPerson = document.getElementById('contactPersonInput').value;
-    const startDateTime = document.getElementById('startDateTimeInput').value;
-    const endDateTime = document.getElementById('endDateTimeInput').value;
-    const selectedRows = Array.from(selectedItems).map(item => item.split(','));
-    const csvContent = 'data:text/csv;charset=utf-8,' + `Title,${title}\nContact Person,${contactPerson}\nStart Date & Time,${startDateTime}\nEnd Date & Time,${endDateTime}\nNumber of Items Selected,${selectedRows.length}\n` + [items[0], ...selectedRows].map(e => e.join(',')).join('\n');
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
-    link.setAttribute('download', 'export.csv');
-    document.body.appendChild(link); // Required for Firefox
-    link.click();
+function reviewSelection() {
+    const selectedData = [items[0]]; // include headers
+    for (let i = 1; i < items.length; i++) {
+        if (selectedItems.has(items[i].join(','))) {
+            selectedData.push(items[i]);
+        }
+    }
+    if (isTableView) {
+        displayTable(selectedData);
+    } else {
+        displayGallery(selectedData);
+    }
 }
 
 function clearSelection() {
@@ -239,7 +238,6 @@ function toggleView() {
     }
 }
 
-
 function displayGallery(data) {
     const gallery = document.getElementById('csvGallery');
     gallery.innerHTML = '';
@@ -298,17 +296,18 @@ function displayGallery(data) {
         gallery.appendChild(div);
     }
 }
-
-function reviewSelection() {
-    const selectedData = [items[0]]; // include headers
-    for (let i = 1; i < items.length; i++) {
-        if (selectedItems.has(items[i].join(','))) {
-            selectedData.push(items[i]);
-        }
-    }
-    if (isTableView) {
-        displayTable(selectedData);
-    } else {
-        displayGallery(selectedData);
-    }
+function exportCSV() {
+    const title = document.getElementById('titleInput').value;
+    const contactPerson = document.getElementById('contactPersonInput').value;
+    const startDateTime = document.getElementById('startDateTimeInput').value;
+    const endDateTime = document.getElementById('endDateTimeInput').value;
+    const selectedRows = Array.from(selectedItems).map(item => item.split(','));
+    const csvContent = 'data:text/csv;charset=utf-8,' + `Title,${title}\nContact Person,${contactPerson}\nStart Date & Time,${startDateTime}\nEnd Date & Time,${endDateTime}\nNumber of Items Selected,${selectedRows.length}\n` + [items[0], ...selectedRows].map(e => e.join(',')).join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', 'export.csv');
+    document.body.appendChild(link); // Required for Firefox
+    link.click();
 }
+
