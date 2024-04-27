@@ -16,50 +16,9 @@ fetch('Resources.csv')
     .then(csvData => {
         items = csvData.split('\n').map(row => row.split(','));
         sortDirection = new Array(items[0].length).fill(1);
-        displayTable(items);  // Add these lines here
-        const categoryColumnIndex = items[0].indexOf('Category');
-        const subcategoryColumnIndex = items[0].indexOf('SubCategory');
-
-        populateDropdowns(items); // Populate the dropdowns after fetching the data
+        displayTable(items);
     })
     .catch(error => console.error('Error fetching CSV:', error));
-// After fetching the CSV data...
-const categories = [...new Set(items.map(item => item[categoryColumnIndex]))];
-const categoryDropdown = document.getElementById('categoryDropdown');
-categories.forEach(category => {
-    const option = document.createElement('option');
-    option.value = category;
-    option.text = category;
-    categoryDropdown.appendChild(option);
-});
-
-categoryDropdown.addEventListener('change', updateSubcategoryDropdown);
-document.getElementById('subcategoryDropdown').addEventListener('change', filterItems);
-
-function updateSubcategoryDropdown() {
-    const selectedCategories = Array.from(categoryDropdown.selectedOptions).map(option => option.value);
-    const subcategories = [...new Set(items.filter(item => selectedCategories.includes(item[categoryColumnIndex])).map(item => item[subcategoryColumnIndex]))];
-    const subcategoryDropdown = document.getElementById('subcategoryDropdown');
-    subcategoryDropdown.innerHTML = ''; // Clear the existing options
-    subcategories.forEach(subcategory => {
-        const option = document.createElement('option');
-        option.value = subcategory;
-        option.text = subcategory;
-        subcategoryDropdown.appendChild(option);
-    });
-    filterItems();
-}
-
-function filterItems() {
-    const selectedCategories = Array.from(document.getElementById('categoryDropdown').selectedOptions).map(option => option.value);
-    const selectedSubcategories = Array.from(document.getElementById('subcategoryDropdown').selectedOptions).map(option => option.value);
-    const filteredItems = items.filter(item => selectedCategories.includes(item[categoryColumnIndex]) && selectedSubcategories.includes(item[subcategoryColumnIndex]));
-    if (isTableView) {
-        displayTable(filteredItems);
-    } else {
-        displayGallery(filteredItems);
-    }
-}
 
 // Tabbed Menu
 function openMenu(evt, menuName) {
