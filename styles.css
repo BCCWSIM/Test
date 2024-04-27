@@ -207,6 +207,6 @@ table tr td:first-child input[type="checkbox"] {
     z-index: 999;
     object-fit: scale-down;
 }
-.thumbnail-list-view {
+#csvTable .thumbnail {
     max-height: 180px;
 }
