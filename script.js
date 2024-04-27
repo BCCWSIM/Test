@@ -16,7 +16,11 @@ fetch('Resources.csv')
     .then(csvData => {
         items = csvData.split('\n').map(row => row.split(','));
         sortDirection = new Array(items[0].length).fill(1);
-        displayTable(items);
+        displayTable(items);  // Add these lines here
+        const categoryColumnIndex = items[0].indexOf('Category');
+        const subcategoryColumnIndex = items[0].indexOf('SubCategory');
+
+        populateDropdowns(items); // Populate the dropdowns after fetching the data
     })
     .catch(error => console.error('Error fetching CSV:', error));
 // After fetching the CSV data...
@@ -349,7 +353,3 @@ function reviewSelection() {
         displayGallery(selectedData);
     }
 }
-
-const categoryColumnIndex = items[0].indexOf('Category');
-const subcategoryColumnIndex = items[0].indexOf('SubCategory');
-
