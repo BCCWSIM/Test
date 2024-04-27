@@ -29,12 +29,33 @@ categories.forEach(category => {
     categoryDropdown.appendChild(option);
 });
 
-categoryDropdown.addEventListener('change', () => {
+categoryDropdown.addEventListener('change', updateSubcategoryDropdown);
+document.getElementById('subcategoryDropdown').addEventListener('change', filterItems);
+
+function updateSubcategoryDropdown() {
     const selectedCategories = Array.from(categoryDropdown.selectedOptions).map(option => option.value);
-    // Filter the subcategories based on the selected categories...
-    // Filter the items based on the selected categories and subcategories...
-    // Call displayTable or displayGallery...
-});
+    const subcategories = [...new Set(items.filter(item => selectedCategories.includes(item[categoryColumnIndex])).map(item => item[subcategoryColumnIndex]))];
+    const subcategoryDropdown = document.getElementById('subcategoryDropdown');
+    subcategoryDropdown.innerHTML = ''; // Clear the existing options
+    subcategories.forEach(subcategory => {
+        const option = document.createElement('option');
+        option.value = subcategory;
+        option.text = subcategory;
+        subcategoryDropdown.appendChild(option);
+    });
+    filterItems();
+}
+
+function filterItems() {
+    const selectedCategories = Array.from(document.getElementById('categoryDropdown').selectedOptions).map(option => option.value);
+    const selectedSubcategories = Array.from(document.getElementById('subcategoryDropdown').selectedOptions).map(option => option.value);
+    const filteredItems = items.filter(item => selectedCategories.includes(item[categoryColumnIndex]) && selectedSubcategories.includes(item[subcategoryColumnIndex]));
+    if (isTableView) {
+        displayTable(filteredItems);
+    } else {
+        displayGallery(filteredItems);
+    }
+}
 
 // Tabbed Menu
 function openMenu(evt, menuName) {
@@ -328,3 +349,7 @@ function reviewSelection() {
         displayGallery(selectedData);
     }
 }
+
+const categoryColumnIndex = items[0].indexOf('Category');
+const subcategoryColumnIndex = items[0].indexOf('SubCategory');
+
