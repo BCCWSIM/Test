@@ -10,7 +10,6 @@ document.getElementById('toggleViewButton').addEventListener('click', toggleView
 document.getElementById('exportButton').addEventListener('click', exportCSV);
 document.getElementById('clearSelectionButton').addEventListener('click', clearSelection);
 document.getElementById('reviewButton').addEventListener('click', reviewSelection);
-document.getElementById('emailButton').addEventListener('click', emailSelection);
 
 fetch('Resources.csv')
     .then(response => response.text())
@@ -353,12 +352,4 @@ function reviewSelection() {
     } else {
         displayGallery(selectedData);
     }
-}
-function emailSelection() {
-    const selectedRows = Array.from(selectedItems).map(item => item.split(','));
-    const emailBody = [items[0], ...selectedRows].map(e => e.join(',')).join('\n');
-    const uniqueCode = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15); // Generate a unique code
-    const timestamp = new Date().toISOString(); // Get the current date and time
-    const mailtoLink = `mailto:?subject=Your%20Selection&body=${encodeURIComponent(emailBody)}%0A%0AUnique%20Code:%20${uniqueCode}%0ADate%20and%20Time:%20${timestamp}`;
-    window.location.href = mailtoLink;
 }
