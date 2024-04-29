@@ -108,7 +108,7 @@
 
 <script>
 window.onload = function() {
-  var uniqueCode = Math.random().toString(36).substring(2, 7);
+  var uniqueCode = new Date().getTime();
   document.getElementById('uniqueCode').textContent = uniqueCode;
 }
 </script>
