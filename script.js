@@ -1,6 +1,6 @@
 window.onbeforeunload = () => window.scrollTo(0, 0);
-window.onload = toggleView;
 window.onload = function() {
+  toggleView();
   var uniqueCode = new Date().getTime();
   uniqueCode = String(uniqueCode).substr(-5); // get the last 5 digits
   document.getElementById('uniqueCode').textContent = uniqueCode;
