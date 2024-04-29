@@ -4,6 +4,9 @@ window.onload = function() {
   var uniqueCode = new Date().getTime();
   uniqueCode = String(uniqueCode).substr(-5); // get the last 5 digits
   document.getElementById('uniqueCode').textContent = uniqueCode;
+
+  // Simulate a click on the first tab
+  document.getElementsByClassName("tablink")[0].click();
 }
 
 let items = [];
@@ -29,7 +32,6 @@ fetch('Resources.csv')
         displayTable(items);
     })
     .catch(error => console.error('Error fetching CSV:', error));
-
 
 // Tabbed Menu
 function openMenu(evt, menuName) {
