@@ -16,6 +16,8 @@ let skuIndex; // We'll define this after fetching the CSV data
 document.getElementById('toggleViewButton').addEventListener('click', toggleView);
 document.getElementById('clearSelectionButton').addEventListener('click', clearSelection);
 document.getElementById('reviewButton').addEventListener('click', reviewSelection);
+// Add event listener to your button
+document.getElementById('exportAndEmailButton').addEventListener('click', exportAndEmail);
 
 fetch('Resources.csv')
     .then(response => response.text())
@@ -287,8 +289,6 @@ function exportAndEmail() {
     window.location.href = 'mailto:cw@cw.ca?subject=' + subject + '&body=' + body;
 }
 
-// Add event listener to your button
-document.getElementById('exportAndEmailButton').addEventListener('click', exportAndEmail);
 
 
 
