@@ -5,8 +5,8 @@ let items = [];
 let sortDirection = [];
 let selectedItems = new Set();
 let isTableView = true;
-let headers = csvData[0]; // assuming 'items' contains your CSV data and the first row is the header
-let skuIndex = headers.indexOf('SKU'); // replace 'SKU' with the actual SKU column name in your CSV
+let headers; // We'll define this after fetching the CSV data
+let skuIndex; // We'll define this after fetching the CSV data
 
 document.getElementById('toggleViewButton').addEventListener('click', toggleView);
 document.getElementById('clearSelectionButton').addEventListener('click', clearSelection);
@@ -16,10 +16,13 @@ fetch('Resources.csv')
     .then(response => response.text())
     .then(csvData => {
         items = csvData.split('\n').map(row => row.split(','));
+        headers = items[0]; // Now we can define 'headers'
+        skuIndex = headers.indexOf('SKU'); // Now we can define 'skuIndex'
         sortDirection = new Array(items[0].length).fill(1);
         displayTable(items);
     })
     .catch(error => console.error('Error fetching CSV:', error));
+
 
 // Tabbed Menu
 function openMenu(evt, menuName) {
