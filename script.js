@@ -7,7 +7,6 @@ let selectedItems = new Set();
 let isTableView = true;
 
 document.getElementById('toggleViewButton').addEventListener('click', toggleView);
-document.getElementById('exportButton').addEventListener('click', exportCSV);
 document.getElementById('clearSelectionButton').addEventListener('click', clearSelection);
 document.getElementById('reviewButton').addEventListener('click', reviewSelection);
 
@@ -297,20 +296,6 @@ function displayGallery(data) {
         div.appendChild(contentDiv); // Append the content div to the card div
         gallery.appendChild(div);
     }
-}
-function exportCSV() {
-    const title = document.getElementById('titleInput').value;
-    const contactPerson = document.getElementById('contactPersonInput').value;
-    const startDateTime = document.getElementById('startDateTimeInput').value;
-    const endDateTime = document.getElementById('endDateTimeInput').value;
-    const selectedRows = Array.from(selectedItems).map(item => item.split(','));
-    const csvContent = 'data:text/csv;charset=utf-8,' + `Title,${title}\nContact Person,${contactPerson}\nStart Date & Time,${startDateTime}\nEnd Date & Time,${endDateTime}\nNumber of Items Selected,${selectedRows.length}\n` + [items[0], ...selectedRows].map(e => e.join(',')).join('\n');
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
-    link.setAttribute('download', 'export.csv');
-    document.body.appendChild(link); // Required for Firefox
-    link.click();
 }
 function myFunction() {
   var input, filter, table, tr, i;
