@@ -5,10 +5,6 @@ let items = [];
 let sortDirection = [];
 let selectedItems = new Set();
 let isTableView = true;
-let headers = items[0]; // assuming 'items' contains your CSV data and the first row is the header
-let skuIndex = headers.indexOf('SKU'); // replace 'SKU' with the actual SKU column name in your CSV
-let titleIndex = headers.indexOf('Title'); // replace 'Title' with the actual Title column name in your CSV
-
 
 document.getElementById('toggleViewButton').addEventListener('click', toggleView);
 document.getElementById('exportButton').addEventListener('click', exportCSV);
@@ -317,19 +313,17 @@ function exportCSV() {
     link.click();
 }
 function myFunction() {
-  var input, filter, table, tr, i;
+  var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
   table = document.getElementById("csvTable");
   tr = table.getElementsByTagName("tr");
 
   for (i = 0; i < tr.length; i++) {
-    let tdSku = tr[i].getElementsByTagName("td")[skuIndex];
-    let tdTitle = tr[i].getElementsByTagName("td")[titleIndex];
-    if (tdSku || tdTitle) {
-      let txtValueSku = tdSku ? tdSku.textContent || tdSku.innerText : '';
-      let txtValueTitle = tdTitle ? tdTitle.textContent || tdTitle.innerText : '';
-      if (txtValueSku.toUpperCase().indexOf(filter) > -1 || txtValueTitle.toUpperCase().indexOf(filter) > -1) {
+    td = tr[i].getElementsByTagName("td")[0]; // Adjust this to match the column index of the SKU in your table
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
@@ -337,5 +331,3 @@ function myFunction() {
     }       
   }
 }
-
-
