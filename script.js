@@ -4,7 +4,7 @@ window.onload = toggleView;
 let items = [];
 let sortDirection = [];
 let selectedItems = new Set();
-let isTableView = true;
+let isTableView = false;
 let headers; // We'll define this after fetching the CSV data
 let skuIndex; // We'll define this after fetching the CSV data
 
