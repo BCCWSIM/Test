@@ -169,9 +169,6 @@ function displayTable(data) {
     table.innerHTML = '';
 
     const headerRow = document.createElement('tr');
-    headerRow.appendChild(document.createElement('th')); 
-    
-    // Add an empty header for the checkbox column
     data[0].forEach((cell, index) => {
         const th = document.createElement('th');
         th.classList.add('header');
@@ -185,17 +182,12 @@ function displayTable(data) {
         th.appendChild(arrow);
         headerRow.appendChild(th);
     });
+    // Add an empty header for the checkbox column
+    headerRow.appendChild(document.createElement('th'));
     table.appendChild(headerRow);
 
     for (let i = 1; i < data.length; i++) {
         const dataRow = document.createElement('tr');
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.classList.add('row-checkbox');
-        checkbox.checked = selectedItems.has(data[i].join(','));
-        const checkboxCell = document.createElement('td');
-        checkboxCell.appendChild(checkbox);
-        dataRow.appendChild(checkboxCell);
         data[i].forEach((cell, cellIndex) => {
             const td = document.createElement('td');
             if (cellIndex === 0) {
@@ -209,27 +201,20 @@ function displayTable(data) {
             }
             dataRow.appendChild(td);
         });
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.classList.add('row-checkbox');
+        checkbox.checked = selectedItems.has(data[i].join(','));
+        const checkboxCell = document.createElement('td');
+        checkboxCell.appendChild(checkbox);
+        dataRow.appendChild(checkboxCell);
         if (selectedItems.has(data[i].join(','))) {
             dataRow.classList.add('selected');
         }
         table.appendChild(dataRow);
-
-        // Add click event to the row
-        dataRow.addEventListener('click', (event) => {
-            if (event.target.type !== 'checkbox') {
-                checkbox.checked = !checkbox.checked;
-                if (checkbox.checked) {
-                    dataRow.classList.add('selected');
-                    selectedItems.add(data[i].join(','));
-                } else {
-                    dataRow.classList.remove('selected');
-                    selectedItems.delete(data[i].join(','));
-                }
-                updateClearSelectionButton();
-            }
-        });
     }
 }
+
 
 function toggleView() {
     isTableView = !isTableView;
