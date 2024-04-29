@@ -5,6 +5,9 @@ let items = [];
 let sortDirection = [];
 let selectedItems = new Set();
 let isTableView = true;
+let headers = items[0]; // assuming 'items' contains your CSV data and the first row is the header
+let skuIndex = headers.indexOf('SKU'); // replace 'SKU' with the actual SKU column name in your CSV
+let titleIndex = headers.indexOf('Title'); // replace 'Title' with the actual Title column name in your CSV
 
 document.getElementById('toggleViewButton').addEventListener('click', toggleView);
 document.getElementById('clearSelectionButton').addEventListener('click', clearSelection);
