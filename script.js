@@ -293,11 +293,11 @@ function exportAndEmail() {
     pdfLink.click(); // This will start the download
 
 // Send email
-let subject = encodeURIComponent('New Event');
+let subject = encodeURIComponent('New Event' + uniqueCode);
 let body = encodeURIComponent('Unique ID: ' + uniqueCode + '\n\n' + csv);
 let startTime = '20240101T080000Z'; // Replace with your start time
 let endTime = '20240101T090000Z'; // Replace with your end time
-window.open('mailto:cw@cw.ca?subject=' + subject + '&body=' + body + '&start=' + startTime + '&end=' + endTime);
+window.open('mailto:cwsimulation@cw..bc.ca?subject=' + subject + '&body=' + body + '&start=' + startTime + '&end=' + endTime);
 }
 
 
