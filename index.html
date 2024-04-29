@@ -21,7 +21,7 @@
         <img src="https://lh3.googleusercontent.com/d/19bi1iNE8JYD1kVJ3nGH0YevbPh-sdQ9b" class="logo1">
     </div>
     <div class="text-container">
-        <span class="w3-text-white" >Simulation Program</span>
+        <span class="w3-text-white" >Simulation<br>Program</span>
     </div>
 </div>
   <div class="w3-display-bottomright w3-center w3-padding-large">
@@ -109,6 +109,7 @@
 <script>
 window.onload = function() {
   var uniqueCode = new Date().getTime();
+  uniqueCode = String(uniqueCode).substr(-5); // get the last 5 digits
   document.getElementById('uniqueCode').textContent = uniqueCode;
 }
 </script>
