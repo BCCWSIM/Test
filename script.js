@@ -252,6 +252,43 @@ function myFunction() {
     }       
   }
 }
+function exportAndEmail() {
+    // Get selected items and unique ID
+    const selectedData = [items[0]]; // include headers
+    let uniqueCode = document.getElementById('uniqueCode').textContent;
+    for (let i = 1; i < items.length; i++) {
+        if (selectedItems.has(items[i].join(','))) {
+            selectedData.push(items[i]);
+        }
+    }
+
+    // Create CSV
+    let csv = Papa.unparse(selectedData);
+
+    // Create PDF
+    let doc = new jsPDF();
+    doc.text(csv, 10, 10); // Simple text-based PDF for demonstration
+    let pdf = doc.output('datauristring'); // Output as Data URI string
+
+    // Create download links
+    let csvLink = document.createElement('a');
+    csvLink.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+    csvLink.download = 'data.csv';
+    csvLink.click(); // This will start the download
+
+    let pdfLink = document.createElement('a');
+    pdfLink.href = pdf;
+    pdfLink.download = 'data.pdf';
+    pdfLink.click(); // This will start the download
+
+    // Send email
+    let subject = encodeURIComponent('New Event');
+    let body = encodeURIComponent('Unique ID: ' + uniqueCode + '\n\n' + csv);
+    window.location.href = 'mailto:cw@cw.ca?subject=' + subject + '&body=' + body;
+}
+
+// Add event listener to your button
+document.getElementById('exportAndEmailButton').addEventListener('click', exportAndEmail);
 
 
 
