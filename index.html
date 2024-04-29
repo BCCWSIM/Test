@@ -10,8 +10,6 @@
 </head>
 <body>
 
-
-
 <!-- Header with image -->
 <header class="bgimg w3-display-container w3-min" id="home">
   <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
@@ -67,9 +65,11 @@
 <!-- Resources Tab -->
     <div id="Eat" class="w3-container menu w3-padding w3-card">
 
+    <!-- Unique Code -->
+    <div id="uniqueCode"></div>
+
     <select id="categoryDropdown" multiple></select>
     <select id="subcategoryDropdown" multiple></select>
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for SKU..">
 
     <table id="csvTable">
         <!-- The CSV data will be displayed here -->
@@ -102,5 +102,13 @@
 
 <!-- End page content -->
 </div>
+
+<script>
+window.onload = function() {
+  var uniqueCode = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  document.getElementById('uniqueCode').textContent = uniqueCode;
+}
+</script>
+
 </body>
 </html>
