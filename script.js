@@ -7,7 +7,6 @@ let selectedItems = new Set();
 let isTableView = true;
 let headers = csvData[0]; // assuming 'items' contains your CSV data and the first row is the header
 let skuIndex = headers.indexOf('SKU'); // replace 'SKU' with the actual SKU column name in your CSV
-let titleIndex = headers.indexOf('Title'); // replace 'Title' with the actual Title column name in your CSV
 
 document.getElementById('toggleViewButton').addEventListener('click', toggleView);
 document.getElementById('clearSelectionButton').addEventListener('click', clearSelection);
@@ -309,11 +308,9 @@ function myFunction() {
 
   for (i = 0; i < tr.length; i++) {
     let tdSku = tr[i].getElementsByTagName("td")[skuIndex];
-    let tdTitle = tr[i].getElementsByTagName("td")[titleIndex];
-    if (tdSku || tdTitle) {
-      let txtValueSku = tdSku ? tdSku.textContent || tdSku.innerText : '';
-      let txtValueTitle = tdTitle ? tdTitle.textContent || tdTitle.innerText : '';
-      if (txtValueSku.toUpperCase().indexOf(filter) > -1 || txtValueTitle.toUpperCase().indexOf(filter) > -1) {
+    if (tdSku) {
+      let txtValueSku = tdSku.textContent || tdSku.innerText;
+      if (txtValueSku.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
@@ -321,5 +318,6 @@ function myFunction() {
     }       
   }
 }
+
 
 
