@@ -47,19 +47,16 @@ function displayTable(data) {
     table.innerHTML = '';
 
     const headerRow = document.createElement('tr');
-    headerRow.appendChild(document.createElement('th')); 
-    // Add an empty header for the checkbox column
     data[0].forEach((cell, index) => {
         const th = document.createElement('th');
         th.classList.add('header');
-        th.style.textAlign = 'right'; // Align content to the right
-        th.addEventListener('click', () => sortData(index)); // Attach event listener to the entire header cell
         const span = document.createElement('span');
         span.textContent = cell;
         th.appendChild(span);
         const arrow = document.createElement('span');
         arrow.textContent = ' ↑↓';
         arrow.classList.add('arrow');
+        arrow.addEventListener('click', () => sortData(index));
         th.appendChild(arrow);
         headerRow.appendChild(th);
     });
@@ -67,23 +64,6 @@ function displayTable(data) {
 
     for (let i = 1; i < data.length; i++) {
         const dataRow = document.createElement('tr');
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.classList.add('row-checkbox');
-        checkbox.checked = selectedItems.has(data[i].join(','));
-        checkbox.addEventListener('change', () => {
-            if (checkbox.checked) {
-                dataRow.classList.add('selected');
-                selectedItems.add(data[i].join(','));
-            } else {
-                dataRow.classList.remove('selected');
-                selectedItems.delete(data[i].join(','));
-            }
-            updateClearSelectionButton();
-        });
-        const checkboxCell = document.createElement('td');
-        checkboxCell.appendChild(checkbox);
-        dataRow.appendChild(checkboxCell);
         data[i].forEach((cell, cellIndex) => {
             const td = document.createElement('td');
             if (cellIndex === 0) {
@@ -101,6 +81,18 @@ function displayTable(data) {
             dataRow.classList.add('selected');
         }
         table.appendChild(dataRow);
+
+        // Add click event to the row
+        dataRow.addEventListener('click', () => {
+            if (selectedItems.has(data[i].join(','))) {
+                dataRow.classList.remove('selected');
+                selectedItems.delete(data[i].join(','));
+            } else {
+                dataRow.classList.add('selected');
+                selectedItems.add(data[i].join(','));
+            }
+            updateClearSelectionButton();
+        });
     }
 }
 
@@ -163,57 +155,6 @@ function updateClearSelectionButton() {
     }
 }
 
-
-function displayTable(data) {
-    const table = document.getElementById('csvTable');
-    table.innerHTML = '';
-
-    const headerRow = document.createElement('tr');
-    data[0].forEach((cell, index) => {
-        const th = document.createElement('th');
-        th.classList.add('header');
-        const span = document.createElement('span');
-        span.textContent = cell;
-        th.appendChild(span);
-        const arrow = document.createElement('span');
-        arrow.textContent = ' ↑↓';
-        arrow.classList.add('arrow');
-        arrow.addEventListener('click', () => sortData(index));
-        th.appendChild(arrow);
-        headerRow.appendChild(th);
-    });
-    // Add an empty header for the checkbox column
-    headerRow.appendChild(document.createElement('th'));
-    table.appendChild(headerRow);
-
-    for (let i = 1; i < data.length; i++) {
-        const dataRow = document.createElement('tr');
-        data[i].forEach((cell, cellIndex) => {
-            const td = document.createElement('td');
-            if (cellIndex === 0) {
-                const img = document.createElement('img');
-                img.src = cell;
-                img.alt = 'Thumbnail';
-                img.classList.add('thumbnail');
-                td.appendChild(img);
-            } else {
-                td.textContent = cell;
-            }
-            dataRow.appendChild(td);
-        });
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.classList.add('row-checkbox');
-        checkbox.checked = selectedItems.has(data[i].join(','));
-        const checkboxCell = document.createElement('td');
-        checkboxCell.appendChild(checkbox);
-        dataRow.appendChild(checkboxCell);
-        if (selectedItems.has(data[i].join(','))) {
-            dataRow.classList.add('selected');
-        }
-        table.appendChild(dataRow);
-    }
-}
 
 
 function toggleView() {
