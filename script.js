@@ -313,17 +313,19 @@ function exportCSV() {
     link.click();
 }
 function myFunction() {
-  var input, filter, table, tr, td, i, txtValue;
+  var input, filter, table, tr, i;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
   table = document.getElementById("csvTable");
   tr = table.getElementsByTagName("tr");
 
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0]; // Adjust this to match the column index of the SKU in your table
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    let tdSku = tr[i].getElementsByTagName("td")[skuIndex];
+    let tdTitle = tr[i].getElementsByTagName("td")[titleIndex];
+    if (tdSku || tdTitle) {
+      let txtValueSku = tdSku ? tdSku.textContent || tdSku.innerText : '';
+      let txtValueTitle = tdTitle ? tdTitle.textContent || tdTitle.innerText : '';
+      if (txtValueSku.toUpperCase().indexOf(filter) > -1 || txtValueTitle.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
@@ -331,4 +333,5 @@ function myFunction() {
     }       
   }
 }
+
 
