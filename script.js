@@ -290,7 +290,7 @@ function exportAndEmail() {
     let body = encodeURIComponent('ID: ' + uniqueCode + '\n\n' + table);
     let startTime = '20240101T080000Z'; // Replace with your start time
     let endTime = '20240101T090000Z'; // Replace with your end time
-    window.open('mailto:cwsimulation@cw..bc.ca?subject=' + subject + '&body=' + body + '&start=' + startTime + '&end=' + endTime);
+    window.open('mailto:cwsimulation@cw.bc.ca?subject=' + subject + '&body=' + body + '&start=' + startTime + '&end=' + endTime);
 }
 
 
