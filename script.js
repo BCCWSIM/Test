@@ -1,25 +1,19 @@
+window.onbeforeunload = () => window.scrollTo(0, 0);
+
+// Store DOM elements in variables
+var uniqueCodeElement = document.getElementById('uniqueCode');
+var firstTabLink = document.getElementsByClassName("tablink")[0];
+
 window.onload = function() {
   toggleView();
 
   // Generate unique code
-  var uniqueCodePromise = new Promise((resolve, reject) => {
-    var uniqueCode = new Date().getTime();
-    uniqueCode = String(uniqueCode).substr(-5); // get the last 5 digits
+  var uniqueCode = new Date().getTime();
+  uniqueCode = String(uniqueCode).substr(-5); // get the last 5 digits
 
-    if (uniqueCode) {
-      resolve(uniqueCode);
-    } else {
-      reject('Failed to generate unique code');
-    }
-  });
-
-  uniqueCodePromise
-    .then(uniqueCode => {
-      // Update DOM elements
-      uniqueCodeElement.textContent = uniqueCode;
-      firstTabLink.click(); // Simulate a click on the first tab
-    })
-    .catch(error => console.error(error));
+  // Update DOM elements
+  uniqueCodeElement.textContent = uniqueCode;
+  firstTabLink.click(); // Simulate a click on the first tab
 }
 
 
