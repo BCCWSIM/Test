@@ -281,19 +281,15 @@ function exportAndEmail() {
     // Create CSV
     let csv = Papa.unparse(filteredData);
 
-    // Format CSV as HTML table for email body
-    let table = '<table><tr><th>Title</th><th>SKU</th></tr>';
+    // Format CSV as plain text table for email body
+    let table = 'Title\tSKU\n';
     filteredData.forEach(row => {
-        table += `<tr><td>${row[0]}</td><td>${row[1]}</td></tr>`;
+        table += `${row[0]}\t${row[1]}\n`;
     });
-    table += '</table>';
-
-    // Encode table as base64
-    let encodedTable = btoa(table);
 
     // Send email
     let subject = encodeURIComponent('New Event' + uniqueCode);
-    let body = 'data:text/html;base64,' + encodedTable;
+    let body = encodeURIComponent('Unique ID: ' + uniqueCode + '\n\n' + table);
     let startTime = '20240101T080000Z'; // Replace with your start time
     let endTime = '20240101T090000Z'; // Replace with your end time
     window.open('mailto:cwsimulation@cw..bc.ca?subject=' + subject + '&body=' + body + '&start=' + startTime + '&end=' + endTime);
