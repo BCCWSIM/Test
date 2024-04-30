@@ -274,32 +274,31 @@ function exportAndEmail() {
     // Get selected items and unique ID
     const selectedData = []; // Don't include headers here
     let uniqueCode = document.getElementById('uniqueCode').textContent;
-    for (let i = 0; i < items.length; i++) { // Start from 0 to include headers
+    for (let i = 1; i < items.length; i++) { // Start from 1 to exclude headers
         if (selectedItems.has(items[i].join(','))) {
             selectedData.push(items[i]);
         }
     }
 
-    // Filter out only Title and SKU columns
+    // Filter out only SKU and Title columns
     const titleIndex = headers.indexOf('Title');
     const skuIndex = headers.indexOf('SKU');
-    const filteredData = selectedData.map(row => [row[titleIndex], row[skuIndex]]);
+    const filteredData = selectedData.map(row => [row[skuIndex], row[titleIndex]]); // SKU first, then Title
 
     // Format CSV as plain text table for email body
-    let table = 'Title\tSKU\n';
-    filteredData.forEach((row, index) => {
-        if (index > 0) { // Skip headers
-            table += `${row[0]}\t${row[1]}\n`;
-        }
+    let table = '';
+    filteredData.forEach(row => {
+        table += `${row[0]}\t${row[1]}\n`; // SKU first, then Title
     });
 
     // Send email
-    let subject = encodeURIComponent('Event: ' + uniqueCode);
-    let body = encodeURIComponent('ID: ' + uniqueCode + '\n\n' + table);
+    let subject = encodeURIComponent('New Event' + uniqueCode);
+    let body = encodeURIComponent('Unique ID: ' + uniqueCode + '\n\n' + table);
     let startTime = '20240101T080000Z'; // Replace with your start time
     let endTime = '20240101T090000Z'; // Replace with your end time
     window.open('mailto:cwsimulation@cw..bc.ca?subject=' + subject + '&body=' + body + '&start=' + startTime + '&end=' + endTime);
 }
+
 
 
 
