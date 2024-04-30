@@ -302,4 +302,3 @@ window.open('mailto:cwsimulation@cw..bc.ca?subject=' + subject + '&body=' + body
 
 
 
-
