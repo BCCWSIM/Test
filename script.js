@@ -273,31 +273,27 @@ function exportAndEmail() {
         }
     }
 
+    // Filter out only Title and SKU columns
+    const titleIndex = headers.indexOf('Title');
+    const skuIndex = headers.indexOf('SKU');
+    const filteredData = selectedData.map(row => [row[titleIndex], row[skuIndex]]);
+
     // Create CSV
-    let csv = Papa.unparse(selectedData);
+    let csv = Papa.unparse(filteredData);
 
-    // Create PDF
-    // let doc = new jsPDF();
-    // doc.text(csv, 10, 10); // Simple text-based PDF for demonstration
-    // let pdf = doc.output('datauristring'); // Output as Data URI string
+    // Format CSV as HTML table for email body
+    let table = '<table><tr><th>Title</th><th>SKU</th></tr>';
+    filteredData.forEach(row => {
+        table += `<tr><td>${row[0]}</td><td>${row[1]}</td></tr>`;
+    });
+    table += '</table>';
 
-    // Create download links
-    // let csvLink = document.createElement('a');
-    // csvLink.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-    // csvLink.download = 'data.csv';
-    // csvLink.click(); // This will start the download
-
-    // let pdfLink = document.createElement('a');
-    // pdfLink.href = pdf;
-    // pdfLink.download = 'data.pdf';
-    // pdfLink.click(); // This will start the download
-
-// Send email
-let subject = encodeURIComponent('Event ' + uniqueCode);
-let body = encodeURIComponent('ID: ' + uniqueCode + '\n\n' + csv);
-let startTime = '20240101T080000Z'; // Replace with your start time
-let endTime = '20240101T090000Z'; // Replace with your end time
-window.open('mailto:cwsimulation@cw..bc.ca?subject=' + subject + '&body=' + body + '&start=' + startTime + '&end=' + endTime);
+    // Send email
+    let subject = encodeURIComponent('New Event' + uniqueCode);
+    let body = encodeURIComponent('Unique ID: ' + uniqueCode + '\n\n' + table);
+    let startTime = '20240101T080000Z'; // Replace with your start time
+    let endTime = '20240101T090000Z'; // Replace with your end time
+    window.open('mailto:cwsimulation@cw..bc.ca?subject=' + subject + '&body=' + body + '&start=' + startTime + '&end=' + endTime);
 }
 
 
