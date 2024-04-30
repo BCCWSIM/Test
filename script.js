@@ -164,7 +164,7 @@ function updateGalleryView() {
 
 function updateClearSelectionButton() {
     const clearSelectionButton = document.getElementById('clearSelectionButton');
-    clearSelectionButton.innerHTML = `CLEAR<br>SELECTION (${selectedItems.size})`;
+    clearSelectionButton.innerHTML = `CLEAR (${selectedItems.size})`;
     if (selectedItems.size > 0) {
         clearSelectionButton.classList.add('amber');
     } else {
