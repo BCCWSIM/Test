@@ -4,19 +4,25 @@ window.onbeforeunload = () => window.scrollTo(0, 0);
 var uniqueCodeElement = document.getElementById('uniqueCode');
 var firstTabLink = document.getElementsByClassName("tablink")[0];
 
-window.onload = function() {
-  toggleView();
-
+function generateUniqueCode() {
   // Generate unique code
   var year = new Date().getFullYear();
   var lastDigit = year % 10;
   var secondLetter = String.fromCharCode(64 + lastDigit); // ASCII value of 'A' is 65
   var randomNumber = Math.floor(10000 + Math.random() * 90000); // generates a 5-digit random number
-  var uniqueCode = 'E' + secondLetter + randomNumber;
+  return 'E' + secondLetter + randomNumber;
+}
 
+function updateDOM(uniqueCode) {
   // Update DOM elements
   uniqueCodeElement.textContent = uniqueCode;
   firstTabLink.click(); // Simulate a click on the first tab
+}
+
+window.onload = function() {
+  toggleView();
+  var uniqueCode = generateUniqueCode();
+  window.requestAnimationFrame(() => updateDOM(uniqueCode));
 }
 
 let items = [];
