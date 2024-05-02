@@ -5,12 +5,12 @@ var uniqueCodeElement = document.getElementById('uniqueCode');
 var firstTabLink = document.getElementsByClassName("tablink")[0];
 
 function generateUniqueCode() {
-  // Generate unique code
-  var year = new Date().getFullYear();
-  var lastDigit = year % 10;
-  var secondLetter = String.fromCharCode(64 + lastDigit); // ASCII value of 'A' is 65
-  var randomNumber = Math.floor(10000 + Math.random() * 90000); // generates a 5-digit random number
-  return 'E' + secondLetter + randomNumber;
+    var timestamp = Date.now(); // Current time in milliseconds
+    var yearEndNumber = new Date().getFullYear().toString().substr(-1); // Last digit of the current year
+    var mapping = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6: 'G', 7: 'H', 8: 'I', 9: 'J'}; // Mapping numbers to letters
+    var secondChar = mapping[yearEndNumber]; // Second character based on the last digit of the current year
+    var randomNum = Math.floor(Math.random() * 10000); // Random number between 0 and 9999
+    return 'E' + secondChar + randomNum.toString().padStart(4, '0');
 }
 
 function updateDOM(uniqueCode) {
