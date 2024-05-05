@@ -1,55 +1,51 @@
-window.onbeforeunload = () => window.scrollTo(0, 0);
-
-// Store DOM elements in variables
-var uniqueCodeElement = document.getElementById('uniqueCode');
-var firstTabLink = document.getElementsByClassName("tablink")[0];
+document.addEventListener('DOMContentLoaded', (event) => {
+    var uniqueCodeElement = document.getElementById('uniqueCode');
+    var uniqueCode = generateUniqueCode();
+    uniqueCodeElement.textContent = uniqueCode;
+});
 
 function generateUniqueCode() {
-    var timestamp = Date.now(); // Current time in milliseconds
-    var yearEndNumber = new Date().getFullYear().toString().substr(-1); // Last digit of the current year
-    var mapping = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6: 'G', 7: 'H', 8: 'I', 9: 'J'}; // Mapping numbers to letters
-    var secondChar = mapping[yearEndNumber]; // Second character based on the last digit of the current year
-    var randomNum = Math.floor(Math.random() * 10000); // Random number between 0 and 9999
+    var timestamp = Date.now();
+    var yearEndNumber = new Date().getFullYear().toString().substr(-1);
+    var mapping = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6: 'G', 7: 'H', 8: 'I', 9: 'J'};
+    var secondChar = mapping[yearEndNumber];
+    var randomNum = Math.floor(Math.random() * 10000);
     return 'E' + secondChar + randomNum.toString().padStart(4, '0');
 }
 
-function updateDOM(uniqueCode) {
-  // Update DOM elements
-  uniqueCodeElement.textContent = uniqueCode;
-  firstTabLink.click(); // Simulate a click on the first tab
-}
+window.onbeforeunload = () => window.scrollTo(0, 0);
+
+var firstTabLink = document.getElementsByClassName("tablink")[0];
 
 window.onload = function() {
   toggleView();
-  var uniqueCode = generateUniqueCode();
-  window.requestAnimationFrame(() => updateDOM(uniqueCode));
+  firstTabLink.click();
 }
 
 let items = [];
 let sortDirection = [];
 let selectedItems = new Set();
 let isTableView = false;
-let headers; // We'll define this after fetching the CSV data
-let skuIndex; // We'll define this after fetching the CSV data
+let headers;
+let skuIndex;
 
 document.getElementById('toggleViewButton').addEventListener('click', toggleView);
 document.getElementById('clearSelectionButton').addEventListener('click', clearSelection);
 document.getElementById('reviewButton').addEventListener('click', reviewSelection);
-// Add event listener to your button
 document.getElementById('exportAndEmailButton').addEventListener('click', exportAndEmail);
 
 fetch('Resources.csv')
     .then(response => response.text())
     .then(csvData => {
-        items = csvData.split('\n').map(row => row.split(','));
-        headers = items[0]; // Now we can define 'headers'
-        skuIndex = headers.indexOf('SKU'); // Now we can define 'skuIndex'
+        items = csvData.split('\n').filter(row => row.length > 0).map(row => row.split(','));
+        headers = items[0];
+        skuIndex = headers.indexOf('SKU');
         sortDirection = new Array(items[0].length).fill(1);
         displayTable(items);
     })
     .catch(error => console.error('Error fetching CSV:', error));
 
-// Tabbed Menu
+
 function openMenu(evt, menuName) {
   var i, x, tablinks;
   x = document.getElementsByClassName("menu");
@@ -64,15 +60,15 @@ function openMenu(evt, menuName) {
   evt.currentTarget.firstElementChild.className += " w3-dark-grey";
 }
 
-// Simulate a click on the first tab
 document.getElementsByClassName("tablink")[0].click();
 
 function displayTable(data) {
     const table = document.getElementById('csvTable');
     table.innerHTML = '';
 
+    // Always add the header row first
     const headerRow = document.createElement('tr');
-    data[0].forEach((cell, index) => {
+    items[0].forEach((cell, index) => {
         const th = document.createElement('th');
         th.classList.add('header');
         const span = document.createElement('span');
@@ -83,10 +79,27 @@ function displayTable(data) {
         arrow.classList.add('arrow');
         arrow.addEventListener('click', () => sortData(index));
         th.appendChild(arrow);
+
+        // Only add the select element to the 'Category' and 'SubCategory' columns
+        if (cell === 'Category' || cell === 'SubCategory') {
+            const select = document.createElement('select');
+            select.addEventListener('change', () => filterData(index, select.value));
+            th.appendChild(select);
+
+            const uniqueValues = [...new Set(items.slice(1).map(row => row[index]))];
+            uniqueValues.forEach(value => {
+                const option = document.createElement('option');
+                option.value = value;
+                option.text = value;
+                select.appendChild(option);
+            });
+        }
+
         headerRow.appendChild(th);
     });
     table.appendChild(headerRow);
 
+    // Then add the data rows
     for (let i = 1; i < data.length; i++) {
         const dataRow = document.createElement('tr');
         data[i].forEach((cell, cellIndex) => {
@@ -107,7 +120,6 @@ function displayTable(data) {
         }
         table.appendChild(dataRow);
 
-        // Add click event to the row
         dataRow.addEventListener('click', () => {
             if (selectedItems.has(data[i].join(','))) {
                 dataRow.classList.remove('selected');
@@ -122,8 +134,7 @@ function displayTable(data) {
 }
 
 function sortData(columnIndex) {
-    const dataToSort = items.slice(1); 
-    // Exclude the header row from sorting
+    const dataToSort = items.slice(1);
     dataToSort.sort((a, b) => {
         const aValue = isNaN(Date.parse(a[columnIndex])) ? a[columnIndex] : new Date(a[columnIndex]);
         const bValue = isNaN(Date.parse(b[columnIndex])) ? b[columnIndex] : new Date(b[columnIndex]);
@@ -134,13 +145,12 @@ function sortData(columnIndex) {
         }
     });
     sortDirection[columnIndex] *= -1;
-    items = [items[0], ...dataToSort]; 
-    // Add the header row back after sorting
+    items = [items[0], ...dataToSort];
     displayTable(items);
 }
 
 function reviewSelection() {
-    const selectedData = [items[0]]; // include headers
+    const selectedData = [items[0]];
     for (let i = 1; i < items.length; i++) {
         if (selectedItems.has(items[i].join(','))) {
             selectedData.push(items[i]);
@@ -169,7 +179,6 @@ function updateGalleryView() {
     }
 }
 
-
 function updateClearSelectionButton() {
     const clearSelectionButton = document.getElementById('clearSelectionButton');
     clearSelectionButton.innerHTML = `CLEAR (${selectedItems.size})`;
@@ -179,8 +188,6 @@ function updateClearSelectionButton() {
         clearSelectionButton.classList.remove('amber');
     }
 }
-
-
 
 function toggleView() {
     isTableView = !isTableView;
@@ -193,6 +200,12 @@ function toggleView() {
         document.getElementById('csvGallery').style.display = '';
         displayGallery(items);
     }
+}
+
+function filterData(columnIndex, filterValue) {
+    // Include the header row, then filter the rest of the data
+    const filteredData = [items[0]].concat(filterValue ? items.slice(1).filter(row => row[columnIndex] === filterValue) : items.slice(1));
+    displayTable(filteredData);
 }
 
 function displayGallery(data) {
@@ -253,25 +266,43 @@ function displayGallery(data) {
         gallery.appendChild(div);
     }
 }
-function myFunction() {
-  var input, filter, table, tr, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("csvTable");
-  tr = table.getElementsByTagName("tr");
 
-  for (i = 0; i < tr.length; i++) {
-    let tdSku = tr[i].getElementsByTagName("td")[skuIndex];
-    if (tdSku) {
-      let txtValueSku = tdSku.textContent || tdSku.innerText;
-      if (txtValueSku.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
-  }
+function filterData(columnIndex, filterValue) {
+    const filteredData = filterValue ? items.filter(row => row[columnIndex] === filterValue) : items;
+    displayTable(filteredData);
 }
+
+function liveSearch() {
+    var input, filter, table, tr, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("csvTable");
+    tr = table.getElementsByTagName("tr");
+  
+    // Add an onclick event to the input element
+    input.onclick = function() {
+      this.value = '';
+    };
+  
+    // Define the indices for SKU and Title columns
+    var skuIndex = items[0].indexOf('SKU'); // replace 'SKU' with the actual SKU column header
+    var titleIndex = items[0].indexOf('Title'); // replace 'Title' with the actual Title column header
+  
+    for (i = 0; i < tr.length; i++) {
+      let tdSku = tr[i].getElementsByTagName("td")[skuIndex];
+      let tdTitle = tr[i].getElementsByTagName("td")[titleIndex];
+      if (tdSku && tdTitle) {
+        let txtValueSku = tdSku.textContent || tdSku.innerText;
+        let txtValueTitle = tdTitle.textContent || tdTitle.innerText;
+        if (txtValueSku.toUpperCase().indexOf(filter) > -1 || txtValueTitle.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  }
+  
 function exportAndEmail() {
     // Get selected items and unique ID
     const selectedData = []; // Don't include headers here
@@ -300,8 +331,4 @@ function exportAndEmail() {
     let endTime = '20240101T090000Z'; // Replace with your end time
     window.open('mailto:cwsimulation@cw.bc.ca?subject=' + subject + '&body=' + body + '&start=' + startTime + '&end=' + endTime);
 }
-
-
-
-
 
