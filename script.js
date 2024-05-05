@@ -166,19 +166,18 @@ function addDataRows(data, table) {
 
 function createDataRow(dataRowItems) {
     const dataRow = document.createElement('tr');
+    dataRow.id = 'row-' + dataRowItems.join(','); // Add this line
     dataRowItems.forEach((cell, cellIndex) => {
         const td = createTableCell(cell, cellIndex);
         dataRow.appendChild(td);
     });
 
-    if (selectedItems.has(dataRowItems.join(','))) {
-        dataRow.classList.add('selected');
-    }
-
-    dataRow.addEventListener('click', () => toggleSelection(dataRow, dataRowItems));
+    const itemKey = dataRowItems.join(',');
+    handleRowSelection(dataRow, itemKey); // Add this line
 
     return dataRow;
 }
+
 
 function createTableCell(cell, cellIndex) {
     const td = document.createElement('td');
@@ -268,6 +267,28 @@ function sortData(columnIndex) {
     displayTable(items);
 }
 
+function handleRowSelection(rowElement, itemKey) {
+    rowElement.addEventListener('click', function() {
+        toggleSelection(rowElement, itemKey);
+    });
+}
+
+
+function updateTableSelections() {
+    const table = document.getElementById('csvTable');
+    const rows = table.getElementsByTagName('tr');
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const itemKey = row.id.substring(4); // Remove the 'row-' prefix
+        if (selectedItems.has(itemKey)) {
+            row.classList.add('selected');
+        } else {
+            row.classList.remove('selected');
+        }
+    }
+}
+
+
 // Buttons that clear or filter selection or toggle AREA
 function reviewSelection() {
     const selectedData = [items[0]];
@@ -294,7 +315,7 @@ function updateClearSelectionButton() {
     clearSelectionButton.innerHTML = `CLEAR (${selectedItems.size})`;
     selectedItems.size > 0 ? clearSelectionButton.classList.add('amber') : clearSelectionButton.classList.remove('amber');
 }
-
+// GALLERY CARD VIEW AREA
 function toggleView() {
     isTableView = !isTableView;
     document.getElementById('csvTable').style.display = isTableView ? '' : 'none';
@@ -302,7 +323,6 @@ function toggleView() {
     isTableView ? displayTable(items) : displayGallery(items);
 }
 
-// GALLERY CARD VIEW AREA
 function displayGallery(data) {
     const gallery = document.getElementById('csvGallery');
     gallery.innerHTML = '';
@@ -325,16 +345,18 @@ function createCard(dataRowItems) {
     return div;
 }
 
-function toggleSelection(div, itemKey) {
+function toggleSelection(element, itemKey) {
     if (selectedItems.has(itemKey)) {
         selectedItems.delete(itemKey);
-        div.classList.remove('selected');
+        element.classList.remove('selected');
     } else {
         selectedItems.add(itemKey);
-        div.classList.add('selected');
+        element.classList.add('selected');
     }
     updateClearSelectionButton();
+    updateTableSelections(); // Add this line
 }
+
 
 function createContentDiv(dataRowItems) {
     const contentDiv = document.createElement('div');
@@ -349,7 +371,6 @@ function createContentDiv(dataRowItems) {
     });
     return contentDiv;
 }
-
 function createImage(cell) {
     const img = document.createElement('img');
     img.src = cell;
@@ -362,18 +383,19 @@ function createParagraph(cell, cellIndex, dataRowItems) {
     const p = document.createElement('p');
     const span = document.createElement('span');
     span.style.fontWeight = 'bold';
-    if (dataRowItems[0][cellIndex] === 'Title') {
+    if (items[0][cellIndex] === 'Title') { // Changed from dataRowItems[0][cellIndex] to items[0][cellIndex]
         p.textContent = cell;
-    } else if (['SKU', 'ID'].includes(dataRowItems[0][cellIndex])) {
-        span.textContent = dataRowItems[0][cellIndex] + ': ';
+    } else if (['SKU', 'ID'].includes(items[0][cellIndex])) { // Changed from dataRowItems[0][cellIndex] to items[0][cellIndex]
+        span.textContent = items[0][cellIndex] + ': '; // Changed from dataRowItems[0][cellIndex] to items[0][cellIndex]
         p.appendChild(span);
         p.appendChild(document.createTextNode(cell));
-    } else if (dataRowItems[0][cellIndex] === 'Quantity') {
+    } else if (items[0][cellIndex] === 'Quantity') { // Changed from dataRowItems[0][cellIndex] to items[0][cellIndex]
         p.textContent = cell;
         p.style.fontSize = '1.5em';
     }
     return p;
 }
+
 
 // DATA SUBMISSION AREA
 function exportAndEmail() {
