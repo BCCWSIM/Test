@@ -76,7 +76,6 @@ function displayTable(data) {
     // Data rows
     addDataRows(data, table);
 }
-
 function createHeaderRow(items) {
     const headerRow = document.createElement('tr');
     items[0].forEach((cell, index) => {
@@ -178,7 +177,6 @@ function createDataRow(dataRowItems) {
     return dataRow;
 }
 
-
 function createTableCell(cell, cellIndex) {
     const td = document.createElement('td');
     if (cellIndex === 0) {
@@ -199,14 +197,17 @@ function createImage(src) {
 }
 
 function toggleSelection(dataRow, dataRowItems) {
-    if (selectedItems.has(dataRowItems.join(','))) {
+    const itemKey = dataRowItems.join(',');
+    if (selectedItems.has(itemKey)) {
         dataRow.classList.remove('selected');
-        selectedItems.delete(dataRowItems.join(','));
+        selectedItems.delete(itemKey);
     } else {
         dataRow.classList.add('selected');
-        selectedItems.add(dataRowItems.join(','));
+        selectedItems.add(itemKey);
     }
     updateClearSelectionButton();
+    updateTableSelections(); // Add this line
+    updateGallerySelections(); // Add this line
 }
 
 function filterData(columnIndex, filterValue) {
@@ -273,7 +274,6 @@ function handleRowSelection(rowElement, itemKey) {
     });
 }
 
-
 function updateTableSelections() {
     const table = document.getElementById('csvTable');
     const rows = table.getElementsByTagName('tr');
@@ -288,6 +288,19 @@ function updateTableSelections() {
     }
 }
 
+function updateGallerySelections() {
+    const gallery = document.getElementById('csvGallery');
+    const cards = gallery.getElementsByClassName('card');
+    for (let i = 0; i < cards.length; i++) {
+        const card = cards[i];
+        const itemKey = card.id.substring(5); // Remove the 'card-' prefix
+        if (selectedItems.has(itemKey)) {
+            card.classList.add('selected');
+        } else {
+            card.classList.remove('selected');
+        }
+    }
+}
 
 // Buttons that clear or filter selection or toggle AREA
 function reviewSelection() {
@@ -321,8 +334,9 @@ function toggleView() {
     document.getElementById('csvTable').style.display = isTableView ? '' : 'none';
     document.getElementById('csvGallery').style.display = isTableView ? 'none' : '';
     isTableView ? displayTable(items) : displayGallery(items);
+    updateTableSelections(); // Update table selections
+    updateGallerySelections(); // Update gallery selections
 }
-
 function displayGallery(data) {
     const gallery = document.getElementById('csvGallery');
     gallery.innerHTML = '';
@@ -330,20 +344,46 @@ function displayGallery(data) {
         const div = createCard(data[i]);
         gallery.appendChild(div);
     }
+    updateGallerySelections(); // Update gallery selections
 }
+
 
 function createCard(dataRowItems) {
     const div = document.createElement('div');
     div.classList.add('card');
     const itemKey = dataRowItems.join(',');
-    if (selectedItems.has(itemKey)) div.classList.add('selected');
+    if (selectedItems.has(itemKey)) {
+        div.classList.add('selected');
+    }
     div.addEventListener('click', function() {
         toggleSelection(div, itemKey);
     });
     const contentDiv = createContentDiv(dataRowItems);
     div.appendChild(contentDiv);
+
+    // Add quantity input
+    const quantityInput = document.createElement('input');
+    quantityInput.type = 'number';
+    quantityInput.min = '1';
+    quantityInput.max = '99';
+    quantityInput.value = '1';
+    quantityInput.classList.add('quantity-input');
+    quantityInput.style.display = 'none'; // Hide the input by default
+
+    // Add a data-id attribute to the quantity input
+    let id = itemKey.replace(/[^a-zA-Z0-9_-]/g, '_');
+    quantityInput.setAttribute('data-id', id);
+
+    // Prevent click event from bubbling up to the card
+    quantityInput.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    div.appendChild(quantityInput);
+
     return div;
 }
+
 
 function toggleSelection(element, itemKey) {
     if (selectedItems.has(itemKey)) {
@@ -353,10 +393,18 @@ function toggleSelection(element, itemKey) {
         selectedItems.add(itemKey);
         element.classList.add('selected');
     }
+
+    // Show or hide quantity input
+    const quantityInput = element.querySelector('.quantity-input');
+    if (element.classList.contains('selected')) {
+        quantityInput.style.display = 'block'; // Show the input
+    } else {
+        quantityInput.style.display = 'none'; // Hide the input
+    }
+
     updateClearSelectionButton();
     updateTableSelections(); // Add this line
 }
-
 
 function createContentDiv(dataRowItems) {
     const contentDiv = document.createElement('div');
@@ -378,24 +426,32 @@ function createImage(cell) {
     img.classList.add('thumbnail');
     return img;
 }
-
 function createParagraph(cell, cellIndex, dataRowItems) {
     const p = document.createElement('p');
     const span = document.createElement('span');
     span.style.fontWeight = 'bold';
-    if (items[0][cellIndex] === 'Title') { // Changed from dataRowItems[0][cellIndex] to items[0][cellIndex]
+    if (items[0][cellIndex] === 'Title') {
         p.textContent = cell;
-    } else if (['SKU', 'ID'].includes(items[0][cellIndex])) { // Changed from dataRowItems[0][cellIndex] to items[0][cellIndex]
-        span.textContent = items[0][cellIndex] + ': '; // Changed from dataRowItems[0][cellIndex] to items[0][cellIndex]
-        p.appendChild(span);
-        p.appendChild(document.createTextNode(cell));
-    } else if (items[0][cellIndex] === 'Quantity') { // Changed from dataRowItems[0][cellIndex] to items[0][cellIndex]
-        p.textContent = cell;
-        p.style.fontSize = '1.5em';
+        p.classList.add('title');
+    } else if (['SKU', 'ID'].includes(items[0][cellIndex])) {
+        p.textContent = cell; // Only include the number
+        p.classList.add('sku');
+    } else if (items[0][cellIndex] === 'Quantity') {
+        const quantityContainer = document.createElement('div');
+        quantityContainer.classList.add('quantity-container');
+        const quantity = document.createElement('p');
+        quantity.textContent = cell;
+        quantity.style.fontSize = '1.5em';
+        quantity.classList.add('quantity');
+        const availability = document.createElement('p');
+        availability.textContent = 'Available';
+        availability.classList.add('availability');
+        quantityContainer.appendChild(quantity);
+        quantityContainer.appendChild(availability);
+        p.appendChild(quantityContainer);
     }
     return p;
 }
-
 
 // DATA SUBMISSION AREA
 function exportAndEmail() {
@@ -407,10 +463,12 @@ function exportAndEmail() {
 
 function getSelectedData() {
     const selectedData = [];
-    let uniqueCode = document.getElementById('uniqueCode').textContent;
     for (let i = 1; i < items.length; i++) {
         if (selectedItems.has(items[i].join(','))) {
-            selectedData.push(items[i]);
+            let id = items[i].join(',').replace(/[^a-zA-Z0-9_-]/g, '_');
+            let quantityInput = document.querySelector(`.quantity-input[data-id="${id}"]`);
+            let quantity = quantityInput ? quantityInput.value : '1'; // Default to '1' if the quantity input does not exist
+            selectedData.push([...items[i], quantity]);
         }
     }
     return selectedData;
@@ -419,22 +477,20 @@ function getSelectedData() {
 function filterDataBySKUAndTitle(selectedData) {
     const titleIndex = headers.indexOf('Title');
     const skuIndex = headers.indexOf('SKU');
-    return selectedData.map(row => [row[skuIndex], row[titleIndex]]);
+    const quantityIndex = headers.length; // Assuming quantity is the last element in the row
+    return selectedData.map(row => [row[skuIndex], row[quantityIndex], row[titleIndex]]);
 }
 
 function formatDataForEmail(filteredData) {
     let table = '';
     filteredData.forEach(row => {
-        table += `${row[0]}\t${row[1]}\n`;
+        table += `${row[0]}\t${row[1]}\t${row[2]}\n`; // Include quantity in the table
     });
     return table;
 }
-
 function sendEmail(table) {
     let uniqueCode = document.getElementById('uniqueCode').textContent;
     let subject = encodeURIComponent('Event: ' + uniqueCode);
     let body = encodeURIComponent('ID: ' + uniqueCode + '\n\n' + table);
-    let startTime = '20240101T080000Z';
-    let endTime = '20240101T090000Z';
-    window.open('mailto:cwsimulation@cw.bc.ca?subject=' + subject + '&body=' + body + '&start=' + startTime + '&end=' + endTime);
+    window.open('mailto:cwsimulation@cw.bc.ca?subject=' + subject + '&body=' + body);
 }
