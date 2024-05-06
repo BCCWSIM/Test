@@ -1,28 +1,19 @@
 body, html {
-  height: 100%;
-  font-family: "Inconsolata", "Arial", sans-serif;
+    height: 100%;
+    font-family: "Inconsolata", "Arial", sans-serif;
 }
 
 .bgimg {
-  background-position: center;
-  background-size: cover;
-  background-image: url("https://lh3.googleusercontent.com/d/1VwfM71ruMmg1vgBlXYUSoCTc8NzXdzyl");
-  min-height: 40%;
-  background-repeat: no-repeat;  
+    background: url("https://lh3.googleusercontent.com/d/1VwfM71ruMmg1vgBlXYUSoCTc8NzXdzyl") no-repeat center;
+    background-size: cover;
+    min-height: 40%;
 }
 
 .logo-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 15px;
-}
-
-.logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 15px;
+    padding: 0 25px;
 }
 
 .logo1, .logo2 {
@@ -48,7 +39,6 @@ body, html {
     }
 }
 
-
 .text-container {
     text-align: center;
     width: 100%;
@@ -68,19 +58,28 @@ body, html {
 }
 
 .menu {
-  display: none;
+    display: none;
 }
 
 body {
     background: #EDEDED;
 }
 
-#csvTable {
+#csvTable, #csvGallery {
     display: block;
 }
 
-#csvGallery {
-    display: block;
+.thumbnail {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    align: center;
+    z-index: 999;
+    object-fit: scale-down;
+}
+
+#csvTable .thumbnail {
+    max-height: 180px;
 }
 
 table {
@@ -98,15 +97,15 @@ th, td {
 }
 
 @media (max-width: 600px) {
-  th, td {
-    font-size: 10px;
-  }
+    th, td {
+        font-size: 10px;
+    }
 }
 
 @media (min-width: 100%) {
-  th, td {
-    font-size: 1.5vw;
-  }
+    th, td {
+        font-size: 1.5vw;
+    }
 }
 
 .arrow {
@@ -175,16 +174,10 @@ table tr td:first-child input[type="checkbox"] {
     display: none;
 }
 
-#csvGallery {
+#csvGallery, .csvGallery {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-}
-
-.csvGallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
 }
 
 .card {
@@ -192,7 +185,12 @@ table tr td:first-child input[type="checkbox"] {
     margin: 5px;
     width: calc(33% - 10px);
     border-radius: 15px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; // Center vertically
 }
+
 
 .card.selected {
     background-color: lightgreen;
@@ -202,23 +200,43 @@ table tr td:first-child input[type="checkbox"] {
     padding: 5px;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.card > div > .sku {
+    align-self:center;
+    margin-top: 0;
+    margin-right: 0;
+    font-size: 0.8em;
+    order: 2;
+}
+
+.card > div > .title {
+    align-self: center;
+    order: 0;
+}
+
+.card > div > .quantity-input {
+    align-self: center;
+    width: 50%;
+    padding: 5px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    order: 1;
+}
+
+.card > div > .quantity-container {
+    align-self: flex-end;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
 }
 
-.card > div > p {
+.card > div > .quantity-container > .quantity,
+.card > div > .quantity-container > .availability {
     text-align: center;
-}
-
-.thumbnail {
-    width: 100%;
-    height: auto;
-    border-radius: 15px;
-    align: center;
-    z-index: 999;
-    object-fit: scale-down;
-}
-#csvTable .thumbnail {
-    max-height: 180px;
 }
