@@ -11,7 +11,8 @@ body, html {
 
 .logo-container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding: 0 25px;
 }
@@ -27,22 +28,11 @@ body, html {
     margin: 10px;
 }
 
-@media (max-width: 600px) {
-    .logo1, .logo2 {
-        max-width: 100%;
-    }
-}
-
-@media (min-width: 900px) {
-    .logo1, .logo2 {
-        max-width: 900px;
-    }
-}
-
 .text-container {
     text-align: center;
     width: 100%;
     max-width: 1000px;
+    align-self: flex-end;
 }
 
 .w3-display-middle {
