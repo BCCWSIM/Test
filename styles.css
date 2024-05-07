@@ -19,12 +19,12 @@ body, html {
 
 .logo1, .logo2 {
     flex: 1;
-    max-width: 300px;
-    width: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
     background-color: rgba(255, 255, 255, 0.60);
     padding: 1px;
     border-radius: 15px;
-    height: auto;
     margin: 10px;
 }
 
