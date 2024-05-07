@@ -24,17 +24,18 @@ body, html {
     align-items: center;
     padding: 0 25px;
 }
-
 .logo1, .logo2 {
     flex: 1;
     max-width: 100%;
+    min-width: 100px; /* Adjust as needed */
+    min-height: 100px; /* Adjust as needed */
     width: auto;
     height: auto;
     background-color: rgba(255, 255, 255, 0.60);
     padding: 1px;
     border-radius: 15px;
     margin: 10px;
-    object-fit: contain; /* Add this line */
+    object-fit: contain;
 }
 
 .text-container {
