@@ -9,6 +9,13 @@ body, html {
     min-height: 40%;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: calc(100% - 50px); /* Adjust as needed */
+}
+
 .logo-container {
     display: flex;
     flex-direction: column;
