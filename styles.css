@@ -32,14 +32,14 @@ body, html {
     text-align: center;
     width: 100%;
     max-width: 1000px;
-    align-self: flex-end;
+    align-self: center;
 }
 
 .w3-display-middle {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .text-container span {
