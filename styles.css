@@ -15,12 +15,14 @@ body, html {
     align-items: center;
     max-height: calc(100% - 50px); /* Adjust as needed */
 }
+
 .logo-img-title-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: row;
 }
+
 .logo-container {
     display: flex;
     flex-direction: column;
@@ -28,6 +30,7 @@ body, html {
     align-items: center;
     padding: 0 25px;
 }
+
 .logo1, .logo2 {
     flex: 1;
     max-width: 100%;
@@ -46,6 +49,7 @@ body, html {
     width: 100%;
     max-width: 1000px;
     align-self: center;
+    margin-left: 25px; /* Add some space between the logos and the text container */
 }
 
 .text-container span {
