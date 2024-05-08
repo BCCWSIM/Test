@@ -234,13 +234,25 @@ table tr td:first-child input[type="checkbox"] {
     align-items: center;
 }
 
-iframe {
-    width: 100vw;
-    height: 100vh;
-}
-
-
 .card > div > .quantity-container > .quantity,
 .card > div > .quantity-container > .availability {
     text-align: center;
 }
+
+iframe {
+    width: 100vw;
+    height: 100vh;
+}
+.header-menu-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.bgimg {
+    background: url("https://lh3.googleusercontent.com/d/1VwfM71ruMmg1vgBlXYUSoCTc8NzXdzyl") no-repeat center;
+    background-size: cover;
+    min-height: 40%;
+    margin-bottom: 20px; /* Adjust as needed */
+}
+
