@@ -26,7 +26,7 @@ body, html {
 .logo1, .logo2 {
     flex: 1;
     max-width: 100%;
-    min-width: 100px; /* Adjust as needed */    
+    max-height: 100px;  
     width: auto;
     height: auto;
     background-color: rgba(255, 255, 255, 0.60);
@@ -233,6 +233,12 @@ table tr td:first-child input[type="checkbox"] {
     justify-content: center;
     align-items: center;
 }
+
+iframe {
+    width: 100vw;
+    height: 100vh;
+}
+
 
 .card > div > .quantity-container > .quantity,
 .card > div > .quantity-container > .availability {
