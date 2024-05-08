@@ -15,7 +15,12 @@ body, html {
     align-items: center;
     max-height: calc(100% - 50px); /* Adjust as needed */
 }
-
+.logo-img-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
 .logo-container {
     display: flex;
     flex-direction: column;
@@ -41,13 +46,6 @@ body, html {
     width: 100%;
     max-width: 1000px;
     align-self: center;
-}
-
-.logo-img-title-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
 }
 
 .text-container span {
