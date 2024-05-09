@@ -244,8 +244,8 @@ table tr td:first-child input[type="checkbox"] {
 }
 
 iframe {
-    width: 100vw;
-    height: 100vh;
+    width: 50vw;
+    height: 50vh;
 }
 .header-menu-container {
     position: sticky;
