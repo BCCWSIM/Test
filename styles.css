@@ -18,19 +18,17 @@ body, html {
 
 .logo-img-title-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: row;
-    height: 100vh; /* Add this line */
 }
-
 
 .logo-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0;
+    padding: 0 25px;
 }
 
 .logo1, .logo2 {
@@ -58,7 +56,6 @@ body, html {
     font-size: calc(2vw + 2vh + 2vmin);
     color: white;
 }
-
 .menu {
     display: none;
 }
