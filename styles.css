@@ -252,11 +252,3 @@ iframe {
     top: 0;
     z-index: 1000;
 }
-
-.bgimg {
-    background: url("https://lh3.googleusercontent.com/d/1VwfM71ruMmg1vgBlXYUSoCTc8NzXdzyl") no-repeat center;
-    background-size: cover;
-    min-height: 40%;
-    margin-bottom: 20px; /* Adjust as needed */
-}
-
