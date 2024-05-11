@@ -207,11 +207,11 @@ table tr td:first-child input[type="checkbox"] {
 }
 
 .card > div > .sku {
-    align-self:center;
-    margin-top: 0;
-    margin-right: 0;
+    align-self: center;
+    margin: 0; /* No margin */
+    padding: 0; /* No padding */
     font-size: 0.8em;
-    order: 2;
+    order: 3; /* Change order to 3 to make it appear at the bottom */
 }
 
 .card > div > .title {
