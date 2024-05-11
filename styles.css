@@ -221,9 +221,10 @@ table tr td:first-child input[type="checkbox"] {
 }
 
 iframe {
-    width: 100vw;
-    height: 100vh;
+    transform: scale(0.8);
+    transform-origin: 0 0;
 }
+
 .header-menu-container {
     position: sticky;
     top: 0;
