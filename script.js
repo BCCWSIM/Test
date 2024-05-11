@@ -278,13 +278,13 @@ function liveSearch() {
 function filterByCategory() {
     let category = document.getElementById('categoryFilter').value;
 
-    // Filter items
-    let filteredItems = category ? items.filter(item => item.category === category) : items;
+    // Get the index of the 'Category' column
+    let categoryIndex = items[0].indexOf('Category');
 
-    // Update views
-    displayTable(filteredItems);
-    displayGallery(filteredItems);
+    // Filter items
+    filterData(categoryIndex, category);
 }
+
 
 function sortData(columnIndex) {
     const dataToSort = items.slice(1);
