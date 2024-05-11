@@ -9,8 +9,7 @@ body, html {
     align-items: center;
     background: url("https://lh3.googleusercontent.com/d/1VwfM71ruMmg1vgBlXYUSoCTc8NzXdzyl") no-repeat center center;
     background-size: auto 100%;
-    background-position: center 20px; /* This will shift the background image 20px down */
-    min-height: calc(25% - 40px); /* Subtracting the total trimmed height (20px top + 20px bottom) */
+    min-height: 25%;
 }
 
 .container {
