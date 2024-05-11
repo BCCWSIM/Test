@@ -31,7 +31,7 @@ body, html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 25px;
+    padding: 0;
 }
 
 .logo1, .logo2 {
@@ -52,7 +52,6 @@ body, html {
     width: 100%;
     max-width: 1000px;
     align-self: center;
-    margin-left: 25px; /* Add some space between the logos and the text container */
 }
 
 .text-container span {
