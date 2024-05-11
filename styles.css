@@ -6,7 +6,7 @@ body, html {
 .bgimg {
     background: url("https://lh3.googleusercontent.com/d/1VwfM71ruMmg1vgBlXYUSoCTc8NzXdzyl") no-repeat center center;
     background-size: auto 100%;
-    min-height: 70%;
+    min-height: 30%;
 }
 
 .container {
