@@ -231,33 +231,6 @@ function liveSearch() {
 
     let filteredItems = [items[0]]; // Include header row in filtered items
 
-    // Check if the category filter dropdown already exists
-    let select = document.getElementById('categoryFilter');
-    if (!select) {
-        // Create select element
-        select = document.createElement('select');
-        select.id = 'categoryFilter';
-        select.addEventListener('change', filterByCategory);
-
-        // Create default option
-        let defaultOption = document.createElement('option');
-        defaultOption.value = '';
-        defaultOption.text = 'All Categories';
-        select.appendChild(defaultOption);
-
-        // Create an option for each category
-        let categories = new Set(items.map(item => item.category));
-        categories.forEach(category => {
-            let option = document.createElement('option');
-            option.value = category;
-            option.text = category;
-            select.appendChild(option);
-        });
-
-        // Add the select element to the DOM
-        document.getElementById('searchBarContainer').appendChild(select);
-    }
-
     for (let i = 0; i < tr.length; i++) {
       let tdSku = tr[i].getElementsByTagName("td")[skuIndex];
       let tdTitle = tr[i].getElementsByTagName("td")[titleIndex];
@@ -278,18 +251,6 @@ function liveSearch() {
         displayGallery(filteredItems);
     }
 }
-
-
-function filterByCategory() {
-    let category = document.getElementById('categoryFilter').value;
-
-    // Get the index of the 'Category' column
-    let categoryIndex = items[0].indexOf('Category');
-
-    // Filter items
-    filterData(categoryIndex, category);
-}
-
 
 function sortData(columnIndex) {
     const dataToSort = items.slice(1);
