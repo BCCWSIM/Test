@@ -4,6 +4,9 @@ body, html {
 }
 
 .bgimg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: url("https://lh3.googleusercontent.com/d/1VwfM71ruMmg1vgBlXYUSoCTc8NzXdzyl") no-repeat center center;
     background-size: auto 100%;
     min-height: 25%;
