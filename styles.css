@@ -56,9 +56,10 @@ body, html {
 }
 
 .text-container span {
-    font-size: calc(2vw + 2vh + 2vmin);
+    font-size: calc(1vw + 1vh + 1vmin); 
     color: white;
 }
+
 .menu {
     display: none;
 }
