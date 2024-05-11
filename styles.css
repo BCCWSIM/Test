@@ -9,20 +9,40 @@ body, html {
     min-height: 70%;
 }
 
-.container, .logo-img-title-container, .logo-container, .text-container {
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
+    max-height: calc(100% - 50px); /* Adjust as needed */
+}
+
+.logo-img-title-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
 }
 
 .logo1, .logo2 {
-    margin: auto;
+    flex: 1;
+    max-width: 100%;
+    max-height: 100px;  
+    width: auto;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.60);
+    padding: 1px;
+    border-radius: 15px;
+    margin: 10px;
+    object-fit: contain;
 }
-
-.text-container span {
-    text-align: center;
-}
-
 
 .text-container {
     text-align: center;
