@@ -238,6 +238,7 @@ table tr td:first-child input[type="checkbox"] {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 0.8em;
 }
 .quantity-container {
     text-align: center;
