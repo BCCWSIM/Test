@@ -230,6 +230,7 @@ table tr td:first-child input[type="checkbox"] {
     border: 1px solid #ccc;
     border-radius: 4px;
     order: 1;
+    text-align: center;
 }
 
 .card > div > .quantity-container {
