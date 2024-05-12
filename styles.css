@@ -78,6 +78,7 @@ body {
     align: center;
     z-index: 999;
     object-fit: scale-down;
+    padding-bottom: 10px;
 }
 
 #csvTable .thumbnail {
