@@ -242,11 +242,7 @@ table tr td:first-child input[type="checkbox"] {
 }
 .quantity-container {
     text-align: center;
-}
-
-.card > div > .quantity-container > .quantity,
-.card > div > .quantity-container > .availability {
-    text-align: center;
+    font-size: 0.8em;
 }
 
 iframe {
