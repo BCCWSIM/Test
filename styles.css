@@ -216,7 +216,7 @@ table tr td:first-child input[type="checkbox"] {
 }
 
 .card > div > .title {
-    align-self: center;
+    text-align: center;
     order: 0;
 }
 
