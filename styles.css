@@ -237,6 +237,9 @@ table tr td:first-child input[type="checkbox"] {
     justify-content: center;
     align-items: center;
 }
+.quantity-container {
+    text-align: center;
+}
 
 .card > div > .quantity-container > .quantity,
 .card > div > .quantity-container > .availability {
