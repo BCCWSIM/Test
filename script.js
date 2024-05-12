@@ -45,6 +45,7 @@ fetch('Resources.csv')
         skuIndex = headers.indexOf('SKU');
         sortDirection = new Array(items[0].length).fill(1);
         displayTable(items);
+        toggleView(); // Add this line
     })
     .catch(error => console.error('Error fetching CSV:', error));
 
