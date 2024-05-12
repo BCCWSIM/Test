@@ -212,13 +212,14 @@ table tr td:first-child input[type="checkbox"] {
     align-self: center;
     margin: 0; /* No margin */
     padding: 0; /* No padding */
-    font-size: 0.8em;
+    font-size: 0.7em;
     order: 3; /* Change order to 3 to make it appear at the bottom */
 }
 
 .card > div > .title {
     text-align: center;
     order: 0;
+    font-size: 1.2em;
 }
 
 .card > div > .quantity-input {
