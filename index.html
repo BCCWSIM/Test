@@ -9,7 +9,6 @@
 <body>
 
 <!-- Header with image -->
-
 <header class="bgimg w3-display-container w3-min" id="home">
   <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
 <!--     <span class="w3-tag">Open from 8am to 4pm</span> -->
@@ -22,44 +21,54 @@
     <div class="text-container">
         <span class="w3-text-white">Simulation Program</span>
     </div>
-  </div>
-  <div class="w3-display-bottomright w3-center w3-padding-large">
-    <span class="w3-text-white">4500 Oak Street, Vancouver</span>
-  </div>
+    <div class="input-details">
+        <input type="text" id="titleInput" placeholder="Session Title">
+        <input type="datetime-local" id="dateTimeStartInput">
+        <input type="number" id="durationInput" placeholder="hours">
+        <input type="datetime-local" id="dateTimeEndInput">
+        <input type="text" id="referenceInput" placeholder="Reference">
+    </div>
+</div>
+<div class="checkbox-group">
+  <input type="checkbox" id="checkbox1">
+  <label for="checkbox1">Checkbox 1</label>
+
+  <input type="checkbox" id="checkbox2">
+  <label for="checkbox2">Checkbox 2</label>
+
+  <input type="checkbox" id="checkbox3">
+  <label for="checkbox3">Checkbox 3</label>
+</div>
+
+
 </header>
 
 <!-- Add a background color and large text to the whole page -->
-<div class="w3-large">
-  <!-- Links (sit on top) -->
-  <div class="w3">
-    <div class="w3-row w3-padding w3-black">
-      <div class="w3-col s3">
-        <a id="toggleViewButton" class="w3-button w3-block w3-black">VIEW</a>
-      </div>
-      <div class="w3-col s3">
-        <a id="clearSelectionButton" class="w3-button w3-block w3-black">CLEAR</a>
-      </div>
-      <div class="w3-col s3">
-        <a id="reviewButton" class="w3-button w3-block w3-black">REVIEW</a>      
-      </div>
-      <div class="w3-col s3">
-        <a id="exportAndEmailButton" class="w3-button w3-block w3-black">SEND</a>
-      </div>
-    </div>
-  </div>
 
 <!-- Menu Container -->
 <div class="w3-container" id="menu" style="position: relative;">
   <div class="w3-content" style="max-width:1200px">
     <div class="w3-row w3-center w3-card w3-padding">
-      <a href="javascript:void(0)" onclick="openMenu(event, 'Eat');" id="myLink">
-        <div class="w3-col s6 tablink">Resources</div>
-      </a>
-      <div class="w3-col s6 tablink">Accessories</div>
-    </div>
 
-    <!-- Resources Tab -->
-    <div id="Eat" class="w3-container menu w3-padding w3-card">
+    <div class="menu-bar">
+      <!-- Links (sit on top) -->
+      <div class="w3">
+        <div class="w3-row w3-padding w3-black">
+          <div class="w3-col s3">
+            <a id="toggleViewButton" class="w3-button w3-block w3-black">VIEW</a>
+          </div>
+          <div class="w3-col s3">
+            <a id="clearSelectionButton" class="w3-button w3-block w3-black">CLEAR</a>
+          </div>
+          <div class="w3-col s3">
+            <a id="reviewButton" class="w3-button w3-block w3-black">REVIEW</a>      
+          </div>
+          <div class="w3-col s3">
+            <a id="exportAndEmailButton" class="w3-button w3-block w3-black">SEND</a>
+          </div>
+        </div>
+      </div>
+    
       <div style="display: flex; justify-content: space-between;">
         <input type="text" id="myInput" onkeyup="liveSearch()" placeholder="Search...">
         <div id="selectContainer"></div>
@@ -75,9 +84,7 @@
       </div>
     </div>
 
-    <div id="Drinks" class="w3-container menu w3-padding-48 w3-card">
-      <!-- ... rest of your code ... -->
-    </div>  
+
     <img src="https://lh3.googleusercontent.com/d/1VS3MFi4Vhg2PPvM6TD7zUi24WpfGKniw" style="width:100%;max-width:1200px" class="w3-margin-top"">
   </div>
 </div>
